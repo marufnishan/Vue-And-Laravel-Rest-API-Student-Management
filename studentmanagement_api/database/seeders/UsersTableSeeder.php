@@ -1,0 +1,31 @@
+<?php
+
+namespace Database\Seeders;
+
+use Illuminate\Database\Seeder;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+
+class UsersTableSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        User::insert([
+            'name' =>  'user',
+            'email' => 'user@gmail.com',
+            'phone' => '01718863771',
+            'password' => Hash::make('password'),
+        ],
+        [
+            'name' =>  'user2',
+            'email' => 'user2@gmail.com',
+            'phone' => '01708582044',
+            'password' => Hash::make('password'),
+        ]);
+    }
+}
