@@ -24,11 +24,13 @@ Route::prefix('v1')->group(function(){
     Route::post('/registration',[AuthController::class,'registration']);
 
     Route::get('/login',function(){
-        return response()->json('Unauthenticated');
+        return response()->json([
+            'message' => 'Unauthenticated'
+         ],401);
     })->name('login');
 
     Route::middleware('auth:api')->group(function(){
-        Route::get('/test',[AuthController::class,'test']);
+        Route::post('/logout',[AuthController::class,'logout']);
     });
 });
 
