@@ -1,30 +1,37 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+  <div>
+    <div class="wrapper">
+
+      <!-- Preloader -->
+      <!-- <div class="preloader flex-column justify-content-center align-items-center">
+        <img class="animation__shake" src="/admin/dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
+      </div> -->
+
+      <!-- Navbar -->
+      <nav-bar></nav-bar>
+      <!-- /.navbar -->
+
+      <!-- Main Sidebar Container -->
+      <side-bar></side-bar>
+
+      <!-- Content Wrapper. Contains page content -->
+      <router-view></router-view>
+      <!-- /.content-wrapper -->
+      
+      <!-- Control Sidebar -->
+      <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+      </aside>
+      <!-- /.control-sidebar -->
+    </div>
   </div>
-  <router-view/>
+  <!-- <router-view/> -->
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+<script>
+import NavBar from './components/NavBar.vue';
+import SideBar from './components/SideBar.vue';
+export default{
+  components: {NavBar, SideBar},
 }
-
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+</script>
