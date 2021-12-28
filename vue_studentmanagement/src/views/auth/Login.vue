@@ -87,6 +87,6 @@
                         this.errors = err.response.data.errors;
                     });
             }
-        }
+        },
     }
 </script>
