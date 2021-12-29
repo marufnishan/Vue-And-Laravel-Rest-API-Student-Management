@@ -35,6 +35,18 @@ export const auth = {
                     });
             })
         },
+        REGISTRATION(context,RegData){
+            return new Promise((resolve,reject)=>{
+                axios.post('/registration',RegData)
+                    .then((res) => {
+                        context.commit('SET_AUTH_TOKEN',res.data.access_token)
+                        context.commit('SET_AUTH_INFO',res.data.user)
+                        resolve(res);
+                    }).catch((err) => {
+                        reject(err);
+                    });
+            })
+        },
         LOGOUT(context){
             axios.defaults.headers.common['Authorization'] = 'Bearer '+ context.state.auth_token;
             return new Promise((resolve,reject)=>{
