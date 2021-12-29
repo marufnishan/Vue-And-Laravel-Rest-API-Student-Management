@@ -5,6 +5,7 @@ import {
 import store from '../store'
 import Login from '../views/auth/Login.vue'
 import Register from '../views/auth/Register.vue'
+import Forgot from '../views/auth/password/Forgot.vue'
 import Home from '../views/pages/Home.vue'
 
 const routes = [{
@@ -19,6 +20,14 @@ const routes = [{
     path: '/register',
     name: 'Register',
     component: Register,
+    meta: {
+      guest: true
+    }
+  },
+  {
+    path: '/forgot',
+    name: 'Forgot',
+    component: Forgot,
     meta: {
       guest: true
     }
