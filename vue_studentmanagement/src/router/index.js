@@ -7,6 +7,11 @@ import Login from '../views/auth/Login.vue'
 import Register from '../views/auth/Register.vue'
 import Forgot from '../views/auth/password/Forgot.vue'
 import Home from '../views/pages/Home.vue'
+import Dashboard from '../views/pages/Dashboard.vue'
+import Management from '../views/pages/Management.vue'
+import Student from '../views/pages/Student.vue'
+import Teacher from '../views/pages/Teacher.vue'
+import About from '../views/pages/About.vue'
 
 const routes = [{
     path: '/',
@@ -34,8 +39,48 @@ const routes = [{
   },
   {
     path: '/admin/dashboard',
+    name: 'Dashboard',
+    component: Dashboard,
+    meta: {
+      auth: true
+    }
+  },
+  {
+    path: '/home',
     name: 'Home',
     component: Home,
+    meta: {
+      auth: true
+    }
+  },
+  {
+    path: '/dashboard/management',
+    name: 'Management',
+    component: Management,
+    meta: {
+      auth: true
+    }
+  },
+  {
+    path: '/dashboard/studentt',
+    name: 'Student',
+    component: Student,
+    meta: {
+      auth: true
+    }
+  },
+  {
+    path: '/teacher',
+    name: 'Teacher',
+    component: Teacher,
+    meta: {
+      auth: true
+    }
+  },
+  {
+    path: '/about',
+    name: 'About',
+    component: About,
     meta: {
       auth: true
     }
@@ -62,7 +107,7 @@ router.beforeEach((to, from, next) => {
   else if (to.matched.some(record => record.meta.guest)) {
     if (store.getters.GET_AUTH_STATUS) {
       next({
-        name: 'Home'
+        name: 'Dashboard'
       })
     } else {
       next()

@@ -27,13 +27,34 @@
               <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
               <li class="nav-item menu-open">
-                <a href="/admin/dashboard" class="nav-link active">
+                <router-link :to="{name: 'Dashboard'}" class="nav-link active">
                   <i class="nav-icon fas fa-tachometer-alt"></i>
                   <p>
                     Dashboard
                     <i class="right fas fa-angle-left"></i>
                   </p>
-                </a>
+                </router-link>
+                <ul class="nav nav-treeview">
+                    
+              <li class="nav-item">
+                <router-link :to="{name: 'Management'}" href="#" class="nav-link">
+                  <i class="nav-icon far fa-user text-light"></i>
+                  <p>Management</p>
+                </router-link>
+              </li>
+              <li class="nav-item">
+                <router-link :to="{name: 'Student'}" href="#" class="nav-link">
+                  <i class="nav-icon far fa-user text-light"></i>
+                  <p>Student</p>
+                </router-link>
+              </li>
+              <li class="nav-item">
+                <router-link :to="{name: 'Teacher'}" href="#" class="nav-link">
+                  <i class="nav-icon far fa-user text-light"></i>
+                  <p>Teacher</p>
+                </router-link>
+              </li>
+                </ul>
                 </li>
               <li class="nav-item">
                 <a href="#" class="nav-link" @click.prevent = "userLogout">
