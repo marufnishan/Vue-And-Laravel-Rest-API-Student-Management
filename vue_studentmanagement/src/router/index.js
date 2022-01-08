@@ -6,6 +6,7 @@ import store from '../store'
 import Login from '../views/auth/Login.vue'
 import Register from '../views/auth/Register.vue'
 import Forgot from '../views/auth/password/Forgot.vue'
+import Reset from '../views/auth/password/Reset.vue'
 import Home from '../views/pages/Home.vue'
 import Dashboard from '../views/pages/Dashboard.vue'
 import Management from '../views/pages/Management.vue'
@@ -33,6 +34,14 @@ const routes = [{
     path: '/forgot',
     name: 'Forgot',
     component: Forgot,
+    meta: {
+      guest: true
+    }
+  },
+  {
+    path: '/reset/:token',
+    name: 'Reset',
+    component: Reset,
     meta: {
       guest: true
     }

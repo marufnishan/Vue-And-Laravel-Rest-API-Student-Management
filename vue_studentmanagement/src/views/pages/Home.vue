@@ -19,7 +19,6 @@
                     <li><span>Advising Schedule for Spring-2022 Forth</span></li>
                 </ul>
             </div>
-
         </div>
     </div>
     <!-- Carasol Start -->

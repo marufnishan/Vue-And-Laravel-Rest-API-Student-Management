@@ -47,6 +47,16 @@ export const auth = {
                     });
             })
         },
+        RESET(context,ResetData){
+            return new Promise((resolve,reject)=>{
+                axios.post('/reset',ResetData)
+                    .then((res) => {
+                        resolve(res);
+                    }).catch((err) => {
+                        reject(err);
+                    });
+            })
+        },
         FORGOT(context,ForgotData){
             return new Promise((resolve,reject)=>{
                 axios.post('/forgot',ForgotData)

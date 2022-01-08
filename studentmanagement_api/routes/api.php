@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\Auth\AuthController;
 use App\Http\Controllers\Api\Auth\ForgotPasswordController;
+use App\Http\Controllers\Api\Auth\ResetPasswordController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -24,6 +25,7 @@ Route::prefix('v1')->group(function(){
     Route::post('/login',[AuthController::class,'login']);
     Route::post('/registration',[AuthController::class,'registration']);
     Route::post('/forgot',[ForgotPasswordController::class,'forgotPassword']);
+    Route::post('/reset',[ResetPasswordController::class,'passwordReset']);
 
     Route::get('/login',function(){
         return response()->json([

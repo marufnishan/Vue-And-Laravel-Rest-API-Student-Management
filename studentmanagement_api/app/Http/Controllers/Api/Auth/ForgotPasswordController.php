@@ -29,7 +29,7 @@ class ForgotPasswordController extends Controller
         DB::table('password_resets')->insert([
             'email' =>$email,
             'token' =>$token,
-            'created_at' =>now()->addMinutes(30)
+            'created_at' =>now()->addHours(1)
         ]);
 
         // mail  send
