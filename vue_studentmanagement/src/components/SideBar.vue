@@ -13,10 +13,10 @@
           <!-- Sidebar user panel (optional) -->
           <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-              <img src="/admin/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+              <img :src="getUserInfo.image" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-              <a href="#" class="d-block">Maruf Nishan</a>
+              <a href="#" class="d-block">{{getUserInfo.name}}</a>
             </div>
           </div>
 
@@ -73,6 +73,11 @@
 <script>
 export default{
     name:'SideBar',
+    computed: {
+      getUserInfo(){
+        return this.$store.getters.GET_AUTH_INFO;
+      }
+    },
     methods: {
             userLogout() {
                 this.$store.dispatch("LOGOUT")

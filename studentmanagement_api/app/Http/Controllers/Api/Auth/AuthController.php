@@ -47,7 +47,9 @@ class AuthController extends Controller
             'name'=> 'required|min:4',
             'phone'=> 'required|max:14|min:11|unique:users',
             'email'=> 'required|email|unique:users',
-            'password'=> 'required|min:6|confirmed'
+            'image' => 'required',
+            'password'=> 'required|min:6|confirmed',
+            
         ]);
 
         if($validate->fails()){
@@ -56,7 +58,7 @@ class AuthController extends Controller
             ],422);
         }
 
-        $reqData = request()->only('name','phone','email','password');
+        $reqData = request()->only('name','phone','email','image','password');
         $reqData['password'] =Hash::make($request->password);
         $user =User::create($reqData);
             Auth::login($user);

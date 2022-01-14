@@ -38,6 +38,18 @@
                         </div>
                         <span class="text-danger" v-if="errors.phone">{{errors.phone[0]}}</span>
                         <div class="input-group mb-3">
+                            <input type="file" name="image" class="form-control" accept="image/*" @change="GetImage" >
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-user"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <img :src="avater" style="height:100px;width:100px;" alt="Image">
+                        </div>
+                        <span class="text-danger" v-if="errors.phone">{{errors.image[0]}}</span>
+                        <div class="input-group mb-3">
                             <input type="password" class="form-control" v-model="form.password" placeholder="Password...">
                             <div class="input-group-append">
                                 <div class="input-group-text">
@@ -91,11 +103,24 @@
                     email: null,
                     password: null,
                     confirm_password: null,
+                    image:this,
                 },
                 errors: {},
+                avater:null,
             }
         },
         methods: {
+            GetImage( e ){
+                let image = e.target.files[0]
+                let reader = new FileReader();
+                reader.readAsDataURL(image);
+                reader.onload = e => {
+                    console.log(e)
+                    this.avater = e.currentTarget.result
+                    console.log(this.avater)
+                    this.form.image = this.avater
+                }
+			},
             userRegister() {
                 this.$store.dispatch("REGISTRATION", this.form)
                     .then((res) => {
@@ -107,7 +132,7 @@
                         console.log(err.response.data.errors)
                         this.errors = err.response.data.errors;
                     });
-            }
+            },
         },
     }
 </script>

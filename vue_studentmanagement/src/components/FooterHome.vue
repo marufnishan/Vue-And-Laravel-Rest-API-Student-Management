@@ -3,16 +3,28 @@
             <!-- Contact Section Start -->
     <section class="contact mt-3" id="contact">
         <div class="container-fluid bg-dark">
-            <div class="container-lg py-5">
-                <div class="row justify-content-center">
-                    <div class="col-lg-8">
-                        <div class="section-title text-center">
-                            <h2 class="title-h1 text-light mb-5">Contact Us</h2>
+            <div class="container-fluid py-5 pl-lg-5 pr-lg-5">
+                <!-- <div class="row justify-content-left">
+                    <div class="col-lg-4">
+                        <div class="section-title text-left">
+                            <h1 class="title-h1 text-light mb-5">Contact Us</h1>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-5">
+                    <div class="col-lg-4">
+                        <div class="section-title text-left">
+                            <h1 class="title-h1 text-light mb-5">Useful Links</h1>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="section-title text-left">
+                            <h1 class="title-h1 text-light mb-5">Send Message</h1>
+                        </div>
+                    </div>
+                </div> -->
+                <div class="row ">
+                    <div class="col-md-4">
+                        
+                    <h1 class="title-h1 text-light mb-5">Contact Us</h1>
                         <div class="contact-item d-flex mb-3">
                             <div class="icon fs-4 text-success">
                                 <i class="fas fa-envelope"></i>
@@ -49,7 +61,16 @@
                             <a href="#" class="fs-5 text-light me-3"><i class="fab fa-whatsapp"></i></a>
                         </div>
                     </div>
-                    <div class="col-md-7">
+                    <div class="col-md-4 mb-4">
+                        <h1 class="title-h1 text-light mb-5">Useful Links</h1>
+                        <a href="#" class="link">About</a><br>
+                        <a href="#" class="link">Home</a><br>
+                        <a href="#" class="link">Teacher</a><br>
+                        <a href="#" class="link">Hostail</a><br>
+                        <a href="#" class="link">Student Portal</a><br>
+                    </div>
+                    <div class="col-md-4">
+                        <h1 class="title-h1 text-light mb-5">Send Message</h1>
                         <div class="contact-form">
                             <form action="">
                                 <div class="row mb-4 d-flex">
@@ -82,7 +103,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-12">
-                                        <button type="submit" class="btn btn-success px-3">Send Message</button>
+                                        <button type="submit" class="btn btn-success px-3">Submit</button>
                                     </div>
                                 </div>
                             </form>
@@ -95,7 +116,7 @@
     <!-- Contact Section End-->
     <!-- Footer Section Start -->
     <div class="footer  bg-dark py-4">
-        <div class="container-lg border-top  text-white ">
+        <div class="container-fluid border-top  text-white">
             <div class="row mt-5">
                 <div class="col-lg-12">
                     <p class="m-0 text-center">© 2021 Copyright by Nishan BD. All rights reserved.</p>
