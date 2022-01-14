@@ -37,6 +37,12 @@
                 <ul class="nav nav-treeview">
                     
               <li class="nav-item">
+                <router-link :to="{name: 'Profile'}" href="#" class="nav-link">
+                  <i class="nav-icon far fa-user text-light"></i>
+                  <p>Profile</p>
+                </router-link>
+              </li>
+              <li class="nav-item">
                 <router-link :to="{name: 'Management'}" href="#" class="nav-link">
                   <i class="nav-icon far fa-user text-light"></i>
                   <p>Management</p>
