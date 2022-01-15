@@ -11,6 +11,7 @@ import Home from '../views/pages/Home.vue'
 import Dashboard from '../views/pages/Dashboard.vue'
 import Management from '../views/pages/Management.vue'
 import Profile from '../views/pages/Profile.vue'
+import EditProfile from '../views/pages/EditProfile.vue'
 import Student from '../views/pages/Student.vue'
 import Teacher from '../views/pages/Teacher.vue'
 import About from '../views/pages/About.vue'
@@ -75,6 +76,14 @@ const routes = [{
     path: '/dashboard/profile',
     name: 'Profile',
     component: Profile,
+    meta: {
+      auth: true
+    }
+  },
+  {
+    path: '/dashboard/profile',
+    name: 'EditProfile',
+    component: EditProfile,
     meta: {
       auth: true
     }

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\Auth\AuthController;
 use App\Http\Controllers\Api\Auth\ForgotPasswordController;
 use App\Http\Controllers\Api\Auth\ResetPasswordController;
+use App\Http\Controllers\Api\Student\EditProfileController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -33,8 +34,25 @@ Route::prefix('v1')->group(function(){
          ],401);
     })->name('login');
 
-    Route::middleware('auth:api')->group(function(){
+    
+
+    Route::middleware('auth:api','verified')->group(function(){
         Route::post('/logout',[AuthController::class,'logout']);
+    });
+
+    //FOR MANAGEMENT
+    Route::middleware('auth:api','verified','authmanagement')->group(function(){
+
+    });
+
+    //FOR TEACHER
+    Route::middleware('auth:api','verified','authteacher')->group(function(){
+
+    });
+
+    //FOR STUDENT
+    Route::middleware('auth:api','verified','authstudent')->group(function(){
+        Route::post('/student/profile/update',[EditProfileController::class,'update']);
     });
 });
 
