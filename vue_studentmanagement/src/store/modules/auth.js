@@ -9,6 +9,8 @@ export const auth = {
         email:null,
         phone:null,
         image:null,
+        id:null,
+        utype:null,
         }
     },
     getters:{
@@ -41,6 +43,17 @@ export const auth = {
                     .then((res) => {
                         context.commit('SET_AUTH_TOKEN',res.data.access_token)
                         context.commit('SET_AUTH_INFO',res.data.user)
+                        resolve(res);
+                    }).catch((err) => {
+                        reject(err);
+                    });
+            })
+        },
+        EDITPROFILE(context,EditProfileData){
+            axios.defaults.headers.common['Authorization'] = 'Bearer '+ context.state.auth_token;
+            return new Promise((resolve,reject)=>{
+                axios.put('/student/profile/update',EditProfileData)
+                    .then((res) => {
                         resolve(res);
                     }).catch((err) => {
                         reject(err);
@@ -90,6 +103,8 @@ export const auth = {
             state.auth_info.email = info.email;
             state.auth_info.phone = info.phone;
             state.auth_info.image = info.image;
+            state.auth_info.id = info.id;
+            state.auth_info.utype = info.utype;
         },
         SET_AUTH_LOGOUT(state){
             state.auth_token = null;
@@ -99,6 +114,8 @@ export const auth = {
                 email:null,
                 phone:null,
                 image:null,
+                id:null,
+                utype:null,
                 }
         }
     },

@@ -103,7 +103,7 @@
                     email: null,
                     password: null,
                     confirm_password: null,
-                    image:this,
+                    image:null,
                 },
                 errors: {},
                 avater:null,

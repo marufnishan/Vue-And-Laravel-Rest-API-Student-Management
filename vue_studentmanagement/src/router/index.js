@@ -81,7 +81,7 @@ const routes = [{
     }
   },
   {
-    path: '/dashboard/profile',
+    path: '/dashboard/editprofile',
     name: 'EditProfile',
     component: EditProfile,
     meta: {

@@ -33,9 +33,7 @@ Route::prefix('v1')->group(function(){
             'message' => 'Unauthenticated'
          ],401);
     })->name('login');
-
     
-
     Route::middleware('auth:api','verified')->group(function(){
         Route::post('/logout',[AuthController::class,'logout']);
     });
@@ -52,7 +50,7 @@ Route::prefix('v1')->group(function(){
 
     //FOR STUDENT
     Route::middleware('auth:api','verified','authstudent')->group(function(){
-        Route::post('/student/profile/update',[EditProfileController::class,'update']);
+        Route::put('/student/profile/update',[EditProfileController::class,'update']);
     });
 });
 
