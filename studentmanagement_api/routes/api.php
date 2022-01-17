@@ -35,8 +35,6 @@ Route::prefix('v1')->group(function(){
          ],401);
     })->name('login');
 
-    Route::get('/student/profile/{id}',[StudentController::class,'getStudent']);
-    
     Route::middleware('auth:api','verified')->group(function(){
         Route::post('/logout',[AuthController::class,'logout']);
     });
@@ -54,7 +52,7 @@ Route::prefix('v1')->group(function(){
     //FOR STUDENT
     Route::middleware('auth:api','verified','authstudent')->group(function(){
         Route::put('/student/profile/update',[EditProfileController::class,'update']);
-        
+        Route::get('/student/profile/{id}',[StudentController::class,'getStudent']);
     });
 });
 

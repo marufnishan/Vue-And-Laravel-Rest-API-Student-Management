@@ -21,12 +21,13 @@
                                 <router-link :to="{name: 'EditProfile'}" href="#" class="btn btn-info pull-right my-5">
                                     Update Profile</router-link>
                             </div>
-                            <div class="col-md-8" v-for="item in profile" :key="item.id">
-                                <h3>Name : {{getUserInfo.name}} </h3>
-                                <p><b>Email :</b> {{getUserInfo.email}}</p>
-                                <p><b>Phone : </b> {{getUserInfo.phone}}</p>
-                                <p><b>Student Id : </b>{{item.id}}</p>
-                                <hr>
+                            <div class="col-md-4 my-lg-5" v-for="item in profile" :key="item.id">
+                                <h1><b>Name :</b> {{getUserInfo.name}} </h1>
+                                <h4><b>Email :</b> {{getUserInfo.email}}</h4>
+                                <h4><b>Phone : </b> {{getUserInfo.phone}}</h4>
+                                <h4><b>Student Id : </b>{{item.id}}</h4>
+                            </div>
+                            <div class="col-md-12" v-for="item in profile" :key="item.id">
                                 <h1>Personal Information</h1>
                                 <p><b>Date Of Birth : </b>{{item.date_of_birth}}</p>
                                 <p><b>Gender : </b>{{item.gender}}</p>
@@ -74,7 +75,7 @@
                             </div>
                             <div class="col-md-12" >
                                 <div class="panel md-whiteframe-2dp">
-                                    <div class="panel-heading">
+                                    <div class="panel-heading" v-for="item in profile" :key="item.id">
                                         <h1 class="panel-title">Education and Training</h1>
                                     </div>
                                     <div class="panel-body" v-for="item in profile" :key="item.id">
@@ -143,7 +144,6 @@
         computed: {
             getUserInfo() {
                 return this.$store.getters.GET_AUTH_INFO;
-
             }
         },
     }

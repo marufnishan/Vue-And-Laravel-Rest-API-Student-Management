@@ -26,6 +26,7 @@ export const auth = {
     },
     actions: {
         LOGIN(context,LoginData){
+            
             return new Promise((resolve,reject)=>{
                 axios.post('/login',LoginData)
                     .then((res) => {
@@ -50,7 +51,6 @@ export const auth = {
             })
         },
         EDITPROFILE(context,EditProfileData){
-            axios.defaults.headers.common['Authorization'] = 'Bearer '+ context.state.auth_token;
             return new Promise((resolve,reject)=>{
                 axios.put('/student/profile/update',EditProfileData)
                     .then((res) => {
@@ -81,7 +81,6 @@ export const auth = {
             })
         },
         LOGOUT(context){
-            axios.defaults.headers.common['Authorization'] = 'Bearer '+ context.state.auth_token;
             return new Promise((resolve,reject)=>{
                 axios.post('/logout')
                     .then((res) => {
