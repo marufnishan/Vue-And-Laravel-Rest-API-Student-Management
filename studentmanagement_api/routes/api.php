@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\Auth\AuthController;
 use App\Http\Controllers\Api\Auth\ForgotPasswordController;
 use App\Http\Controllers\Api\Auth\ResetPasswordController;
 use App\Http\Controllers\Api\Student\EditProfileController;
+use App\Http\Controllers\Api\Student\StudentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -33,6 +34,8 @@ Route::prefix('v1')->group(function(){
             'message' => 'Unauthenticated'
          ],401);
     })->name('login');
+
+    Route::get('/student/profile/{id}',[StudentController::class,'getStudent']);
     
     Route::middleware('auth:api','verified')->group(function(){
         Route::post('/logout',[AuthController::class,'logout']);
@@ -51,6 +54,7 @@ Route::prefix('v1')->group(function(){
     //FOR STUDENT
     Route::middleware('auth:api','verified','authstudent')->group(function(){
         Route::put('/student/profile/update',[EditProfileController::class,'update']);
+        
     });
 });
 

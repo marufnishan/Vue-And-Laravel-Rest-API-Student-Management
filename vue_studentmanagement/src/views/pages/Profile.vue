@@ -17,66 +17,67 @@
                                     @else
                                     <img src="#" width="100%" />
                                 @endif -->
-                                
-                                <router-link :to="{name: 'EditProfile'}" href="#" class="btn btn-info pull-right my-5">Update Profile</router-link>
+
+                                <router-link :to="{name: 'EditProfile'}" href="#" class="btn btn-info pull-right my-5">
+                                    Update Profile</router-link>
                             </div>
-                            <div class="col-md-8">
+                            <div class="col-md-8" v-for="item in profile" :key="item.id">
                                 <h3>Name : {{getUserInfo.name}} </h3>
                                 <p><b>Email :</b> {{getUserInfo.email}}</p>
                                 <p><b>Phone : </b> {{getUserInfo.phone}}</p>
-                                <p><b>Student Id : </b> </p>
+                                <p><b>Student Id : </b>{{item.id}}</p>
                                 <hr>
                                 <h1>Personal Information</h1>
-                                <p><b>Date Of Birth : </b></p>
-                                <p><b>Gender : </b></p>
-                                <p><b>Marital Status : </b></p>
-                                <p><b>Blood Group : </b></p>
-                                <p><b>Religion : </b></p>
-                                <p><b>Nationality : </b></p>
-                                <p><b>National Id : </b></p>
-                                <p><b>Alternative Email : </b></p>
-                                <p><b>Alternative Phone : </b></p>
-                                <p><b>Personal Website : </b></p>
-                                <p><b>Social Network Id : </b></p>
+                                <p><b>Date Of Birth : </b>{{item.date_of_birth}}</p>
+                                <p><b>Gender : </b>{{item.gender}}</p>
+                                <p><b>Marital Status : </b>{{item.maritial_status}}</p>
+                                <p><b>Blood Group : </b>{{item.blood_group}}</p>
+                                <p><b>Religion : </b>{{item.religion}}</p>
+                                <p><b>Nationality : </b>{{item.nationality}}</p>
+                                <p><b>National Id : </b>{{item.national_id}}</p>
+                                <p><b>Alternative Email : </b>{{item.alternate_email}}</p>
+                                <p><b>Alternative Phone : </b>{{item.alternate_phone}}</p>
+                                <p><b>Personal Website : </b>{{item.personal_website}}</p>
+                                <p><b>Social Network Id : </b>{{item.social_id}}</p>
                                 <hr>
                                 <h1>Guardian Information</h1>
-                                <p><b>Father's Name : </b></p>
-                                <p><b>Father's Contact No : </b></p>
-                                <p><b>Father's Occupation : </b></p>
-                                <p><b>Father's Annual Income : </b></p>
-                                <p><b>Mother's Name : </b></p>
-                                <p><b>Mother's Contact No : </b></p>
-                                <p><b>Mother's Occupation : </b></p>
-                                <p><b>Mother's Annual Income : </b></p>
-                                <p><b>Local Guardian's Name : </b></p>
-                                <p><b>Local Guardian's Contact No : </b></p>
-                                <p><b>Local Guardian's Address : </b></p>
+                                <p><b>Father's Name : </b>{{item.father_name}}</p>
+                                <p><b>Father's Contact No : </b>{{item.father_phn}}</p>
+                                <p><b>Father's Occupation : </b>{{item.father_occupation}}</p>
+                                <p><b>Father's Annual Income : </b>{{item.father_income}}</p>
+                                <p><b>Mother's Name : </b>{{item.mother_name}}</p>
+                                <p><b>Mother's Contact No : </b>{{item.mother_phn}}</p>
+                                <p><b>Mother's Occupation : </b>{{item.mother_occupation}}</p>
+                                <p><b>Mother's Annual Income : </b>{{item.mother_income}}</p>
+                                <p><b>Local Guardian's Name : </b>{{item.local_gurdian_name}}</p>
+                                <p><b>Local Guardian's Contact No : </b>{{item.local_gurdian_phn}}</p>
+                                <p><b>Local Guardian's Address : </b>{{item.local_gurdian_address}}</p>
                                 <hr>
                                 <h1>Present Address</h1>
-                                <p><b>Address : </b></p>
-                                <p><b>Post Office : </b></p>
-                                <p><b>Police Station : </b></p>
-                                <p><b>District/City : </b></p>
-                                <p><b>Division/State : </b></p>
-                                <p><b>Country : </b></p>
-                                <p><b>Zip Code : </b></p>
+                                <p><b>Address : </b>{{item.address}}</p>
+                                <p><b>Post Office : </b>{{item.post_office}}</p>
+                                <p><b>Police Station : </b>{{item.police_station}}</p>
+                                <p><b>District/City : </b>{{item.dictrict}}</p>
+                                <p><b>Division/State : </b>{{item.division}}</p>
+                                <p><b>Country : </b>{{item.country}}</p>
+                                <p><b>Zip Code : </b>{{item.zip_code}}</p>
                                 <hr>
                                 <h1>Permanent Address</h1>
-                                <p><b>Address : </b></p>
-                                <p><b>Post Office : </b></p>
-                                <p><b>Police Station : </b></p>
-                                <p><b>District/City : </b></p>
-                                <p><b>Division/State : </b></p>
-                                <p><b>Country : </b></p>
-                                <p><b>Zip Code : </b></p>
+                                <p><b>Address : </b>{{item.per_address}}</p>
+                                <p><b>Post Office : </b>{{item.per_post_office}}</p>
+                                <p><b>Police Station : </b>{{item.per_police_station}}</p>
+                                <p><b>District/City : </b>{{item.per_dictrict}}</p>
+                                <p><b>Division/State : </b>{{item.per_division}}</p>
+                                <p><b>Country : </b>{{item.per_country}}</p>
+                                <p><b>Zip Code : </b>{{item.per_zip_code}}</p>
                                 <hr>
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-md-12" >
                                 <div class="panel md-whiteframe-2dp">
                                     <div class="panel-heading">
                                         <h1 class="panel-title">Education and Training</h1>
                                     </div>
-                                    <div class="panel-body">
+                                    <div class="panel-body" v-for="item in profile" :key="item.id">
                                         <div class="table-responsive">
                                             <table class="table table-striped table-panel-success">
                                                 <thead>
@@ -93,14 +94,14 @@
                                                 </thead>
                                                 <tbody>
                                                     <tr>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
+                                                        <td>{{item.degree}}</td>
+                                                        <td>{{item.degree_name}}</td>
+                                                        <td>{{item.university}}</td>
+                                                        <td>{{item.board}}</td>
+                                                        <td>{{item.passing_year}}</td>
+                                                        <td>{{item.class_devision}}</td>
+                                                        <td>{{item.cgpa}}</td>
+                                                        <td>{{item.remarks}}</td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -118,6 +119,7 @@
 
 </template>
 <script>
+    import axios from 'axios'
     import NavBar from '../../components/NavBar.vue'
     import SideBar from '../../components/SideBar.vue'
     export default {
@@ -126,9 +128,22 @@
             NavBar
         },
         name: 'Profile',
+        data() {
+            return {
+                profile: [],
+            }
+        },
+        async mounted() {
+                const result = await axios.get("http://127.0.0.1:8000/api/v1/student/profile/" + this.$store.getters
+                    .GET_AUTH_INFO.id);
+                this.profile = result.data
+                console.log(this.profile);
+
+            },
         computed: {
             getUserInfo() {
                 return this.$store.getters.GET_AUTH_INFO;
+
             }
         },
     }
