@@ -20,7 +20,6 @@
 </template>
 
 <script>
-
 export default{
 
   data(){
@@ -32,6 +31,6 @@ export default{
     loggedInStatus(){
       return this.$store.getters.GET_AUTH_STATUS;
     }
-  }
+  },
 }
 </script>

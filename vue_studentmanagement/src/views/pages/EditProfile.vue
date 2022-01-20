@@ -31,11 +31,11 @@
                             <p><b>Phone : </b>{{getUserInfo.phone}}</p>
                             <p><b>User Id : </b>{{user_id}}</p>
                             <p><b>User Type : </b>{{getUserInfo.utype}}</p>
-                            <p><b>Student Id : </b><input type="text" class="form-control" v-model="form.id"></p>
+                            <p><b>Student Id : </b><input type="text" class="form-control"  v-model="form.id"></p>
                             <span class="text-danger" v-if="errors.id">{{errors.id[0]}}</span>
                             
                             <h1>Personal Information</h1>
-                            <p><b>Date Of Birth : </b><input type="date" class="form-control" v-model="form.date_of_birth"></p>
+                            <p><b>Date Of Birth : </b><input type="date" class="form-control"  v-model="form.date_of_birth"></p>
                             <span class="text-danger" v-if="errors.date_of_birth">{{errors.date_of_birth[0]}}</span>
                             <p><b>Gender : </b><input type="text" class="form-control" v-model="form.gender"></p>
                             <span class="text-danger" v-if="errors.gender">{{errors.gender[0]}}</span>
@@ -145,6 +145,7 @@
 
 </template>
 <script>
+import axios from 'axios';
 import NavBar from '../../components/NavBar.vue'
 import SideBar from '../../components/SideBar.vue'
     export default {
@@ -209,6 +210,7 @@ import SideBar from '../../components/SideBar.vue'
                 user_id:this.$store.getters.GET_AUTH_INFO.id,
                 errors: {},
                 avater:null,
+                profile: []
             }
         },
         methods: {
@@ -235,6 +237,61 @@ import SideBar from '../../components/SideBar.vue'
                         this.errors = err.response.data.errors;
                     });
             },
+        },
+        async mounted(){
+            let result = await axios.get("/student/profile/" + this.$store.getters
+                    .GET_AUTH_INFO.id);
+                let data =this.profile = result.data;
+                console.log(this.profile)
+
+                data.forEach(element => {
+                    this.form.id= element.id
+                    this.avater= element.image
+                    this.form.date_of_birth= element.date_of_birth
+                    this.form.gender= element.gender
+                    this.form.maritial_status= element.maritial_status
+                    this.form.blood_group= element.blood_group
+                    this.form.religion= element.religion
+                    this.form.nationality= element.nationality
+                    this.form.national_id= element.national_id
+                    this.form.alternate_email= element.alternate_email
+                    this.form.alternate_phone= element.alternate_phone
+                    this.form.personal_website= element.personal_website
+                    this.form.social_id= element.social_id
+                    this.form.father_name= element.father_name
+                    this.form.father_phn= element.father_phn
+                    this.form.father_occupation= element.father_occupation
+                    this.form.father_income= element.father_income
+                    this.form.mother_name= element.mother_name
+                    this.form.mother_phn= element.mother_phn
+                    this.form.mother_occupation= element.mother_occupation
+                    this.form.mother_income= element.mother_income
+                    this.form.local_gurdian_name= element.local_gurdian_name
+                    this.form.local_gurdian_phn= element.local_gurdian_phn
+                    this.form.local_gurdian_address= element.local_gurdian_address
+                    this.form.address= element.address
+                    this.form.post_office= element.post_office
+                    this.form.police_station= element.police_station
+                    this.form.dictrict= element.dictrict
+                    this.form.division= element.division
+                    this.form.country= element.country
+                    this.form.zip_code= element.zip_code
+                    this.form.per_address= element.per_address
+                    this.form.per_post_office= element.per_post_office
+                    this.form.per_police_station= element.per_police_station
+                    this.form.per_dictrict= element.per_dictrict
+                    this.form.per_division= element.per_division
+                    this.form.per_country= element.per_country
+                    this.form.per_zip_code= element.per_zip_code
+                    this.form.degree= element.degree
+                    this.form.degree_name= element.degree_name
+                    this.form.university= element.university
+                    this.form.board= element.board
+                    this.form.passing_year= element.passing_year
+                    this.form.class_devision= element.class_devision
+                    this.form.cgpa= element.cgpa
+                    this.form.remarks= element.remarks
+                });
         },
     }
 </script>
