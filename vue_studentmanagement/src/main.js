@@ -5,5 +5,6 @@ import router from './router'
 import store from './store'
 
 axios.defaults.headers.common['Authorization'] = 'Bearer '+ store.getters.GET_AUTH_TOKEN;
+axios.defaults.baseURL = 'http://127.0.0.1:8000/api/v1';
 
 createApp(App).use(store).use(router).mount('#app')

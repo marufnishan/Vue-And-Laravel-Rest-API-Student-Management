@@ -10,8 +10,8 @@
                     </div>
                     <div class="panel-body">
                         <div class="row">
-                            <div class="col-md-4">
-                                <img :src="getUserInfo.image" style="width:100%" alt="User Image">
+                            <div class="col-md-4" v-for="item in profile" :key="item.id">
+                                <img :src="item.image"  style="width:100%" alt="User Image">
                                 <!-- @if($user->profile->image)
                                     <img src="#" width="100%" />
                                     @else
@@ -21,11 +21,11 @@
                                 <router-link :to="{name: 'EditProfile'}" href="#" class="btn btn-info pull-right my-5">
                                     Update Profile</router-link>
                             </div>
-                            <div class="col-md-4 my-lg-5" v-for="item in profile" :key="item.id">
+                            <div class="col-md-4 my-lg-5" >
                                 <h1><b>Name :</b> {{getUserInfo.name}} </h1>
                                 <h4><b>Email :</b> {{getUserInfo.email}}</h4>
                                 <h4><b>Phone : </b> {{getUserInfo.phone}}</h4>
-                                <h4><b>Student Id : </b>{{item.id}}</h4>
+                                <h4 v-for="item in profile" :key="item.id"><b>Student Id : </b>{{item.id}}</h4>
                             </div>
                             <div class="col-md-12" v-for="item in profile" :key="item.id">
                                 <h1>Personal Information</h1>
@@ -73,7 +73,7 @@
                                 <p><b>Zip Code : </b>{{item.per_zip_code}}</p>
                                 <hr>
                             </div>
-                            <div class="col-md-12" >
+                            <div class="col-md-12">
                                 <div class="panel md-whiteframe-2dp">
                                     <div class="panel-heading" v-for="item in profile" :key="item.id">
                                         <h1 class="panel-title">Education and Training</h1>
@@ -123,28 +123,34 @@
     import axios from 'axios'
     import NavBar from '../../components/NavBar.vue'
     import SideBar from '../../components/SideBar.vue'
+    
     export default {
-        components: {
-            SideBar,
-            NavBar
-        },
         name: 'Profile',
         data() {
             return {
                 profile: [],
             }
         },
-        async mounted() {
-                const result = await axios.get("http://127.0.0.1:8000/api/v1/student/profile/" + this.$store.getters
+        methods: {
+            async loadData() {
+                let result = await axios.get("/student/profile/" + this.$store.getters
                     .GET_AUTH_INFO.id);
-                this.profile = result.data
-                console.log(this.profile);
-
-            },
+                this.profile = result.data;
+            }
+            
+        },
+        components: {
+            SideBar,
+            NavBar
+        },
         computed: {
             getUserInfo() {
                 return this.$store.getters.GET_AUTH_INFO;
             }
+        },
+        mounted() {
+            this.loadData();
+            
         },
     }
 </script>

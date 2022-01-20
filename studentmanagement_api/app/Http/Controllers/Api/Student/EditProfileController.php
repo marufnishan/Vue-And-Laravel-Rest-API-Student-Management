@@ -17,7 +17,7 @@ class EditProfileController extends Controller
             'image' => 'required',
             'date_of_birth'=> 'required',
             'gender'=> 'required',
-            'maritial_status'=> 'required',
+            /* 'maritial_status'=> 'required',
             'blood_group' => 'required',
             'religion'=> 'required',
             'nationality'=> 'required',
@@ -62,7 +62,7 @@ class EditProfileController extends Controller
             'passing_year' => 'required',
             'class_devision'=> 'required',
             'cgpa'=> 'required',
-            'remarks'=> 'required',
+            'remarks'=> 'required', */
             
         ]);
 
@@ -94,7 +94,7 @@ class EditProfileController extends Controller
         $student->personal_website = $request->personal_website;
         $student->social_id = $request->social_id;
         $student->father_name = $request->father_name;
-        $student->local_gurdian_address = $request->local_gurdian_address;
+        $student->father_phn = $request->father_phn;
         $student->father_occupation = $request->father_occupation;
         $student->father_income = $request->father_income;
         $student->mother_name = $request->mother_name;
