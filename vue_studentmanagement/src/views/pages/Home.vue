@@ -52,6 +52,7 @@
     <!-- Footer Section End -->
 </template>
 <script>
+    import axios from 'axios'
     import FooterHome from '../../components/FooterHome.vue';
     import NavHome from '../../components/NavHome.vue';
     export default {
@@ -60,5 +61,20 @@
             FooterHome
         },
         name: 'Home',
+        data() {
+            return {
+                token: this.$store.getters.GET_AUTH_TOKEN,
+            }
+        },
+        
+        created(){
+            axios.defaults.headers.common['Authorization'] = 'Bearer '+ this.token ;
+        },
     }
 </script>
+<style scoped>
+.container-fluid{
+    margin: 0 !important;
+    padding: 0 !important;
+}
+</style>

@@ -148,9 +148,9 @@
                 return this.$store.getters.GET_AUTH_INFO;
             }
         },
-        mounted() {
+        created(){
             this.loadData();
-            
+            /* setInterval(() => this.loadData(), 5000); */
         },
     }
 </script>

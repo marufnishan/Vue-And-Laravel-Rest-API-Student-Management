@@ -3,7 +3,7 @@
     <side-bar></side-bar>
     <div class="content-wrapper">
         <div>
-    <div class="container" style="padding: 30px 0">
+    <div class="container ml-md-5 py-5">
         <div class="row">
             <div class="panel panel-default">
                 <div class="panel-heading py-3">
