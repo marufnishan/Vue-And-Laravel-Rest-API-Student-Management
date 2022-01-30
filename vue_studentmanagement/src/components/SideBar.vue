@@ -78,6 +78,12 @@
                     <p>Teacher</p>
                   </router-link>
                 </li>
+                <li class="nav-item">
+                  <router-link :to="{name: 'Users'}" href="#" class="nav-link">
+                    <i class="nav-icon far fa-user text-light"></i>
+                    <p>User</p>
+                  </router-link>
+                </li>
               </ul>
             </li>
             <li v-if="getUserInfo.utype=== 'tea'" class="nav-item menu-open">

@@ -4,8 +4,10 @@ use App\Http\Controllers\Api\Auth\AuthController;
 use App\Http\Controllers\Api\Auth\ForgotPasswordController;
 use App\Http\Controllers\Api\Auth\ResetPasswordController;
 use App\Http\Controllers\Api\Management\ManagementTeacherController;
+use App\Http\Controllers\Api\Management\ManagementUsersController;
 use App\Http\Controllers\Api\Student\EditProfileController;
 use App\Http\Controllers\Api\Student\StudentController;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -30,7 +32,10 @@ Route::prefix('v1')->group(function(){
     Route::post('/forgot',[ForgotPasswordController::class,'forgotPassword']);
     Route::post('/reset',[ResetPasswordController::class,'passwordReset']);
 
-    Route::post('/management/add/teacher',[ManagementTeacherController::class,'addteacher']);
+    Route::put('/management/update_utype',[ManagementUsersController::class,'updateUtype']);
+    Route::get('/management/users', function () {
+        return User::all();
+    });
     
     Route::get('/login',function(){
         return response()->json([
@@ -44,7 +49,7 @@ Route::prefix('v1')->group(function(){
 
     //FOR MANAGEMENT
     Route::middleware('auth:api','verified','authmanagement')->group(function(){
-        /* Route::post('/management/add/teacher',[ManagementTeacherController::class,'addteacher']); */
+        Route::post('/management/add/teacher',[ManagementTeacherController::class,'addteacher']);
     });
 
     //FOR TEACHER

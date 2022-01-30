@@ -14,6 +14,7 @@ import Profile from '../views/pages/Profile.vue'
 import EditProfile from '../views/pages/EditProfile.vue'
 import Student from '../views/pages/Student.vue'
 import Teacher from '../views/pages/Teacher.vue'
+import Users from '../views/pages/Users.vue'
 import ManagementAddTeacher from '../views/pages/ManagementAddTeacher.vue'
 import About from '../views/pages/About.vue'
 
@@ -109,6 +110,14 @@ const routes = [{
     path: '/management/add/teacher',
     name: 'ManagementAddTeacher',
     component: ManagementAddTeacher,
+    meta: {
+      auth: true
+    }
+  },
+  {
+    path: '/management/users',
+    name: 'Users',
+    component: Users,
     meta: {
       auth: true
     }
