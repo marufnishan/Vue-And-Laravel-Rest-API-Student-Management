@@ -7,6 +7,8 @@ use App\Http\Controllers\Api\Management\ManagementTeacherController;
 use App\Http\Controllers\Api\Management\ManagementUsersController;
 use App\Http\Controllers\Api\Student\EditProfileController;
 use App\Http\Controllers\Api\Student\StudentController;
+use App\Models\Student;
+use App\Models\Teacher;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -31,17 +33,13 @@ Route::prefix('v1')->group(function(){
     Route::post('/registration',[AuthController::class,'registration']);
     Route::post('/forgot',[ForgotPasswordController::class,'forgotPassword']);
     Route::post('/reset',[ResetPasswordController::class,'passwordReset']);
-
-    Route::put('/management/update_utype',[ManagementUsersController::class,'updateUtype']);
-    Route::get('/management/users', function () {
-        return User::all();
-    });
-    
     Route::get('/login',function(){
         return response()->json([
             'message' => 'Unauthenticated'
          ],401);
     })->name('login');
+
+
 
     Route::middleware('auth:api','verified')->group(function(){
         Route::post('/logout',[AuthController::class,'logout']);
@@ -50,6 +48,16 @@ Route::prefix('v1')->group(function(){
     //FOR MANAGEMENT
     Route::middleware('auth:api','verified','authmanagement')->group(function(){
         Route::post('/management/add/teacher',[ManagementTeacherController::class,'addteacher']);
+        Route::put('/management/update_utype',[ManagementUsersController::class,'updateUtype']);
+        Route::get('/management/users', function () {
+            return User::all();
+            });
+        Route::get('/management/show/teachers', function () {
+                return Teacher::all();
+            });
+        Route::get('/management/show/students', function () {
+                return Student::all();
+            });
     });
 
     //FOR TEACHER
@@ -63,4 +71,3 @@ Route::prefix('v1')->group(function(){
         Route::get('/student/profile/{id}',[StudentController::class,'getStudent']);
     });
 });
-

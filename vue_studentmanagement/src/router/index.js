@@ -12,10 +12,11 @@ import Dashboard from '../views/pages/Dashboard.vue'
 import Management from '../views/pages/Management.vue'
 import Profile from '../views/pages/Profile.vue'
 import EditProfile from '../views/pages/EditProfile.vue'
-import Student from '../views/pages/Student.vue'
 import Teacher from '../views/pages/Teacher.vue'
 import Users from '../views/pages/Users.vue'
+import ManagementShowAllTeachers from '../views/pages/ManagementShowAllTeachers.vue'
 import ManagementAddTeacher from '../views/pages/ManagementAddTeacher.vue'
+import ManagementShowAllStudents from '../views/pages/ManagementShowAllStudents.vue'
 import About from '../views/pages/About.vue'
 
 const routes = [{
@@ -91,14 +92,6 @@ const routes = [{
     }
   },
   {
-    path: '/dashboard/studentt',
-    name: 'Student',
-    component: Student,
-    meta: {
-      auth: true
-    }
-  },
-  {
     path: '/teacher',
     name: 'Teacher',
     component: Teacher,
@@ -118,6 +111,22 @@ const routes = [{
     path: '/management/users',
     name: 'Users',
     component: Users,
+    meta: {
+      auth: true
+    }
+  },
+  {
+    path: '/management/show/teachers',
+    name: 'ManagementShowAllTeachers',
+    component: ManagementShowAllTeachers,
+    meta: {
+      auth: true
+    }
+  },
+  {
+    path: '/management/show/students',
+    name: 'ManagementShowAllStudents',
+    component: ManagementShowAllStudents,
     meta: {
       auth: true
     }

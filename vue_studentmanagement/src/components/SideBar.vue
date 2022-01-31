@@ -67,13 +67,13 @@
                   </router-link>
                 </li>
                 <li class="nav-item">
-                  <router-link :to="{name: 'Student'}" href="#" class="nav-link">
+                  <router-link :to="{name: 'ManagementShowAllStudents'}" href="#" class="nav-link">
                     <i class="nav-icon far fa-user text-light"></i>
                     <p>Student</p>
                   </router-link>
                 </li>
                 <li class="nav-item">
-                  <router-link :to="{name: 'ManagementAddTeacher'}" href="#" class="nav-link">
+                  <router-link :to="{name: 'ManagementShowAllTeachers'}" href="#" class="nav-link">
                     <i class="nav-icon far fa-user text-light"></i>
                     <p>Teacher</p>
                   </router-link>

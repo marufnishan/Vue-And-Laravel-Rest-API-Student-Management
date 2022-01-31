@@ -13,10 +13,7 @@
                                     <div class="col-md-8">
                                         All Users
                                     </div>
-                                    <div class="col-md-2">
-                                        <a href="#" class="btn btn-success float-right">Add New</a>
-                                    </div>
-                                    <div class="col-md-2">
+                                    <div class="col-md-4">
                                         <input type="text" class="form-control" placeholder="Search...." />
                                     </div>
                                 </div>
