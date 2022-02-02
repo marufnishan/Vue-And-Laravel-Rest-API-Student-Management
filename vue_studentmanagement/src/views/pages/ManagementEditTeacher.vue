@@ -7,10 +7,10 @@
                 <div class="row">
                     <div class="panel panel-default">
                         <div class="panel-heading py-3">
-                            <h1>Add Teacher</h1>
+                            <h1>Edit Teacher</h1>
                         </div>
                         <div class="panel-body">
-                            <form @submit.prevent="addTeacher">
+                            <form @submit.prevent="editTeacher">
                                 <div class="col-md-4">
                                     <!-- <input type="file" name="image" class="form-control" accept="image/*" @change="GetImage" >
                             <span class="text-danger" v-if="errors.image">{{errors.image[0]}}</span> -->
@@ -27,34 +27,34 @@
                                 </div>
                                 <div class="col-md-8">
                                     <h3>Name : <input type="text" class="form-control" v-model="form.name"></h3>
-                                    <span class="text-danger" v-if="errors.id">{{errors.name[0]}}</span>
+                                    <!-- <span class="text-danger" v-if="errors.id">{{errors.name[0]}}</span> -->
                                     <p><b>Email : </b><input type="email" class="form-control" v-model="form.email"></p>
-                                    <span class="text-danger" v-if="errors.id">{{errors.email[0]}}</span>
+                                    <!-- <span class="text-danger" v-if="errors.id">{{errors.email[0]}}</span> -->
                                     <p><b>Phone : </b><input type="text" class="form-control" v-model="form.phone"></p>
-                                    <span class="text-danger" v-if="errors.id">{{errors.phone[0]}}</span>
+                                    <!-- <span class="text-danger" v-if="errors.id">{{errors.phone[0]}}</span> -->
                                     <p><b>Id : </b><input type="text" class="form-control" v-model="form.id"></p>
-                                    <span class="text-danger" v-if="errors.id">{{errors.id[0]}}</span>
+                                    <!-- <span class="text-danger" v-if="errors.id">{{errors.id[0]}}</span> -->
                                     <p><b>User Id : </b><input type="text" class="form-control" v-model="form.user_id">
                                     </p>
-                                    <span class="text-danger" v-if="errors.id">{{errors.user_id[0]}}</span>
+                                    <!-- <span class="text-danger" v-if="errors.id">{{errors.user_id[0]}}</span> -->
                                     <p><b>Subject : </b><input type="text" class="form-control" v-model="form.subject">
                                     </p>
-                                    <span class="text-danger" v-if="errors.id">{{errors.subject[0]}}</span>
+                                    <!-- <span class="text-danger" v-if="errors.id">{{errors.subject[0]}}</span> -->
                                     <p><b>Designation : </b><input type="text" class="form-control"
                                             v-model="form.designation"></p>
-                                            <span class="text-danger" v-if="errors.id">{{errors.designation[0]}}</span>
+                                            <!-- <span class="text-danger" v-if="errors.id">{{errors.designation[0]}}</span> -->
                                     <p><b>Salary : </b><input type="text" class="form-control" v-model="form.salary">
                                     </p>
-                                    <span class="text-danger" v-if="errors.id">{{errors.salary[0]}}</span>
+                                   <!--  <span class="text-danger" v-if="errors.id">{{errors.salary[0]}}</span> -->
 
                                     <h1>Personal Information</h1>
                                     <p><b>Date Of Birth : </b><input type="date" class="form-control"
                                             v-model="form.date_of_birth"></p>
-                                    <span class="text-danger"
-                                        v-if="errors.date_of_birth">{{errors.date_of_birth[0]}}</span>
+                                    <!-- <span class="text-danger"
+                                        v-if="errors.date_of_birth">{{errors.date_of_birth[0]}}</span> -->
                                     <p><b>Gender : </b><input type="text" class="form-control" v-model="form.gender">
                                     </p>
-                                     <span class="text-danger" v-if="errors.gender">{{errors.gender[0]}}</span>
+                                     <!-- <span class="text-danger" v-if="errors.gender">{{errors.gender[0]}}</span> -->
                                     <p><b>Marital Status : </b><input type="text" class="form-control"
                                             v-model="form.maritial_status"></p>
                                     <!-- <span class="text-danger"
@@ -148,15 +148,11 @@
 </template>
 
 <script>
-    import axios from 'axios';
+    import axios from 'axios'
     import NavBar from '../../components/NavBar.vue'
     import SideBar from '../../components/SideBar.vue'
     export default {
-        components: {
-            SideBar,
-            NavBar
-        },
-        name: 'ManagementAddTeacher',
+        name:'ManagementEditTeacher',
         data() {
             return {
                 form: {
@@ -196,59 +192,28 @@
                     cgpa: '',
                     remarks: '',
                 },
-                errors: {},
             }
         },
+        components: {
+            SideBar,
+            NavBar
+        },
         methods: {
-
-            async addTeacher() {
-                await axios.post("/management/add/teacher", {
-                        name: this.form.name,
-                        email: this.form.email,
-                        phone: this.form.phone,
-
-                        id: this.form.id,
-                        user_id: this.form.user_id,
-                        subject: this.form.subject,
-                        designation: this.form.designation,
-                        salary: this.form.salary,
-                        /* image:null, */
-                        date_of_birth: this.form.date_of_birth,
-                        gender: this.form.gender,
-                        maritial_status: this.form.maritial_status,
-                        blood_group: this.form.blood_group,
-                        religion: this.form.religion,
-                        nationality: this.form.nationality,
-                        national_id: this.form.national_id,
-                        alternate_email: this.form.alternate_email,
-                        alternate_phone: this.form.alternate_phone,
-                        personal_website: this.form.personal_website,
-                        social_id: this.form.social_id,
-                        address: this.form.address,
-                        post_office: this.form.post_office,
-                        police_station: this.form.police_station,
-                        dictrict: this.form.dictrict,
-                        division: this.form.division,
-                        country: this.form.country,
-                        zip_code: this.form.zip_code,
-                        degree: this.form.degree,
-                        degree_name: this.form.degree_name,
-                        university: this.form.university,
-                        board: this.form.board,
-                        passing_year: this.form.passing_year,
-                        class_devision: this.form.class_devision,
-                        cgpa: this.form.cgpa,
-                        remarks: this.form.remarks,
-                    })
-                    .then(response => {
-                        alert(response.data.message);
-                    }).catch(error => {
-                        this.errors = error.response.data.errors;
-                        console.log(error.response.data.errors)
-                    });
-                
-            }
-        }
+            async editTeacher() {
+                await axios.put("/management/edit/teacher", this.form);
+                alert("User Information Updated");
+                this.$router.push({
+                            name: 'ManagementShowAllTeachers'
+                        })
+            },
+            async loadData() {
+                let result = await axios.get("/management/teacher_info/"+this.$route.params.id);
+                this.form = result.data;
+            },
+        },
+        created() {
+            this.loadData();
+        },
     }
 </script>
 

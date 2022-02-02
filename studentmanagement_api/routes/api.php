@@ -40,6 +40,7 @@ Route::prefix('v1')->group(function(){
     })->name('login');
 
     
+    
 
     Route::middleware('auth:api','verified')->group(function(){
         Route::post('/logout',[AuthController::class,'logout']);
@@ -47,7 +48,15 @@ Route::prefix('v1')->group(function(){
 
     //FOR MANAGEMENT
     Route::middleware('auth:api','verified','authmanagement')->group(function(){
+        //Teacher
         Route::post('/management/add/teacher',[ManagementTeacherController::class,'addteacher']);
+        Route::get('/management/show/teachers', function () {
+            return Teacher::all();
+        });
+        Route::get('/management/teacher_info/{id}',[ManagementTeacherController::class,'getTeacher']);
+        Route::put('/management/edit/teacher',[ManagementTeacherController::class,'editteacher']);
+
+        //User
         Route::put('/management/update_utype',[ManagementUsersController::class,'updateUtype']);
         Route::put('/management/update_user_info',[ManagementUsersController::class,'updateUser']);
         Route::get('/management/user_info/{id}',[ManagementUsersController::class,'getUser']);
@@ -55,13 +64,11 @@ Route::prefix('v1')->group(function(){
         Route::get('/management/users', function () {
             return User::all();
             });
-        Route::get('/management/show/teachers', function () {
-                return Teacher::all();
-            });
+
+        //Student
         Route::get('/management/show/students', function () {
-                return Student::all();
+            return Student::all();
             });
-             
     });
 
     //FOR TEACHER

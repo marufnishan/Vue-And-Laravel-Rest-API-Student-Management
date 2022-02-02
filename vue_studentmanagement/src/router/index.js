@@ -15,8 +15,9 @@ import EditProfile from '../views/pages/EditProfile.vue'
 import Teacher from '../views/pages/Teacher.vue'
 import Users from '../views/pages/Users.vue'
 import ManagementEditUsers from '../views/pages/ManagementEditUsers.vue'
-import ManagementShowAllTeachers from '../views/pages/ManagementShowAllTeachers.vue'
 import ManagementAddTeacher from '../views/pages/ManagementAddTeacher.vue'
+import ManagementShowAllTeachers from '../views/pages/ManagementShowAllTeachers.vue'
+import ManagementEditTeacher from '../views/pages/ManagementEditTeacher.vue'
 import ManagementShowAllStudents from '../views/pages/ManagementShowAllStudents.vue'
 import About from '../views/pages/About.vue'
 
@@ -108,6 +109,24 @@ const routes = [{
       auth: true
     }
   },
+  
+  {
+    path: '/management/show/teachers',
+    name: 'ManagementShowAllTeachers',
+    component: ManagementShowAllTeachers,
+    meta: {
+      auth: true
+    }
+  },
+  
+  {
+    path: '/management/edit/teachers/:id',
+    name: 'ManagementEditTeacher',
+    component: ManagementEditTeacher,
+    meta: {
+      auth: true
+    }
+  },
   {
     path: '/management/users',
     name: 'Users',
@@ -120,14 +139,6 @@ const routes = [{
     path: '/management/update_user_info/:id',
     name: 'ManagementEditUsers',
     component: ManagementEditUsers,
-    meta: {
-      auth: true
-    }
-  },
-  {
-    path: '/management/show/teachers',
-    name: 'ManagementShowAllTeachers',
-    component: ManagementShowAllTeachers,
     meta: {
       auth: true
     }

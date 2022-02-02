@@ -49,8 +49,6 @@
 
         data() {
             return {
-                /* errors: {},
-                avater:null, */
                 profile: {
                     id: this.$route.params.id,
                     name: null,

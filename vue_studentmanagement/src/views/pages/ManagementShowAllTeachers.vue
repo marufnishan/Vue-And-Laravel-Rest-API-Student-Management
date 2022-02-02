@@ -100,6 +100,13 @@
                                                 <td>{{item.class_devision}}</td>
                                                 <td>{{item.cgpa}}</td>
                                                 <td>{{item.remarks}}</td>
+                                                <td>
+                                                    <div class="d-flex">
+                                                        <router-link :to="'/management/edit/teachers/'+item.id" href="#"><i class="btn btn-success fas fa-edit mr-3"></i></router-link>
+                                                        <i class="btn btn-danger fas fa-trash-alt"></i>
+                                                    </div>
+                                                    
+                                                </td>
                                             </tr>
                                         </tbody>
                                     </table>

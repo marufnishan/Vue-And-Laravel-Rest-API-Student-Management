@@ -57,8 +57,11 @@
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <router-link :to="'/management/update_user_info/'+item.id" href=""><i class="btn btn-success fas fa-edit mr-3"></i></router-link>
-                                                    <i class="btn btn-danger fas fa-trash-alt" v-on:click="deleteUser(item.id)"></i>
+                                                    <div class="d-flex">
+                                                        <router-link :to="'/management/update_user_info/'+item.id" href=""><i class="btn btn-success fas fa-edit mr-3"></i></router-link>
+                                                        <i class="btn btn-danger fas fa-trash-alt" v-on:click="deleteUser(item.id)"></i>
+                                                    </div>
+                                                    
                                                 </td>
                                             </tr>
                                         </tbody>
