@@ -117,7 +117,7 @@ const routes = [{
     }
   },
   {
-    path: '/management/update_user_info',
+    path: '/management/update_user_info/:id',
     name: 'ManagementEditUsers',
     component: ManagementEditUsers,
     meta: {

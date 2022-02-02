@@ -49,6 +49,12 @@ class ManagementUsersController extends Controller
         return response()->json(['message'=>'User Info Updated Successfully'],200);
     }
 
+    public function getUser($id)
+    {
+        $user = User::find($id);
+        return response()->json($user);
+    }
+
     public function delete($id)
     {
         User::destroy($id);
