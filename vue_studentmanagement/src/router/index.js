@@ -14,6 +14,7 @@ import Profile from '../views/pages/Profile.vue'
 import EditProfile from '../views/pages/EditProfile.vue'
 import Teacher from '../views/pages/Teacher.vue'
 import Users from '../views/pages/Users.vue'
+import ManagementEditUsers from '../views/pages/ManagementEditUsers.vue'
 import ManagementShowAllTeachers from '../views/pages/ManagementShowAllTeachers.vue'
 import ManagementAddTeacher from '../views/pages/ManagementAddTeacher.vue'
 import ManagementShowAllStudents from '../views/pages/ManagementShowAllStudents.vue'
@@ -111,6 +112,14 @@ const routes = [{
     path: '/management/users',
     name: 'Users',
     component: Users,
+    meta: {
+      auth: true
+    }
+  },
+  {
+    path: '/management/update_user_info',
+    name: 'ManagementEditUsers',
+    component: ManagementEditUsers,
     meta: {
       auth: true
     }

@@ -27,4 +27,31 @@ class ManagementUsersController extends Controller
         $user->save();
         return response()->json(['message'=>'User Type Updated Successfully'],200);
     }
+
+    public function updateUser(Request $request)
+    {
+        $validate = Validator::make($request->all(),[
+            'id' => 'required',
+            'name' => 'required',
+            /* 'image' => 'required', */
+        ]);
+        
+        if($validate->fails()){
+            return response()->json([
+                'errors'=>$validate->errors()
+            ],422);
+        }
+
+        $user = User::find($request->id);
+        $user->name =$request->name;
+        /* $user->image =$request->image; */
+        $user->save();
+        return response()->json(['message'=>'User Info Updated Successfully'],200);
+    }
+
+    public function delete($id)
+    {
+        User::destroy($id);
+        return response()->json(['message'=>'User Info Deleted Successfully'],200);
+    }
 }

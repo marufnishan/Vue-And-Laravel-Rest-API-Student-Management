@@ -7,8 +7,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="panel panel-default">
-                            <div class="panel-heading p-3"
-                                style="background:linear-gradient(45deg,#00897B,#0081bf);">
+                            <div class="panel-heading p-3" style="background:linear-gradient(45deg,#00897B,#0081bf);">
                                 <div class="row">
                                     <div class="col-md-8">
                                         All Users
@@ -30,6 +29,7 @@
                                                 <th>Phone </th>
                                                 <th>User Type</th>
                                                 <th>Change Type</th>
+                                                <th>Action</th>
 
                                             </tr>
                                         </thead>
@@ -55,6 +55,10 @@
                                                                     @click="updateUtype(item.id,'std')">Student</a></li>
                                                         </ul>
                                                     </div>
+                                                </td>
+                                                <td>
+                                                    <router-link :to="{name: 'ManagementEditUsers'}" href=""><i class="btn btn-success fas fa-edit mr-3"></i></router-link>
+                                                    <i class="btn btn-danger fas fa-trash-alt" v-on:click="deleteUser(item.id)"></i>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -91,6 +95,13 @@
                     utype
                 });
                 alert("User Type Updated");
+                this.loadData();
+            },
+            async deleteUser(id) {
+                console.warn(id)
+                await axios.delete("/management/delete_user_info/"+id);
+                alert("User Successfully Deleted");
+                this.loadData();
             },
         },
         created() {

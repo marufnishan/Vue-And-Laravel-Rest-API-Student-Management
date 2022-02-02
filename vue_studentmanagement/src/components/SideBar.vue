@@ -103,10 +103,10 @@
                   </router-link>
                 </li>
                 <li class="nav-item">
-                  <router-link :to="{name: 'Student'}" href="#" class="nav-link">
+                  <a href="#" class="nav-link">
                     <i class="nav-icon far fa-user text-light"></i>
                     <p>Student</p>
-                  </router-link>
+                  </a>
                 </li>
                 <li class="nav-item">
                   <router-link :to="{name: 'Teacher'}" href="#" class="nav-link">

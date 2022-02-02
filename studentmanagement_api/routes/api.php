@@ -39,7 +39,7 @@ Route::prefix('v1')->group(function(){
          ],401);
     })->name('login');
 
-
+    Route::put('/management/update_user_info',[ManagementUsersController::class,'updateUser']); 
 
     Route::middleware('auth:api','verified')->group(function(){
         Route::post('/logout',[AuthController::class,'logout']);
@@ -49,6 +49,8 @@ Route::prefix('v1')->group(function(){
     Route::middleware('auth:api','verified','authmanagement')->group(function(){
         Route::post('/management/add/teacher',[ManagementTeacherController::class,'addteacher']);
         Route::put('/management/update_utype',[ManagementUsersController::class,'updateUtype']);
+        
+        Route::delete('/management/delete_user_info/{id}',[ManagementUsersController::class,'delete']);
         Route::get('/management/users', function () {
             return User::all();
             });
@@ -58,6 +60,7 @@ Route::prefix('v1')->group(function(){
         Route::get('/management/show/students', function () {
                 return Student::all();
             });
+             
     });
 
     //FOR TEACHER
