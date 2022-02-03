@@ -11,7 +11,7 @@
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-md-4" v-for="item in profile" :key="item.id">
-                                <img :src="item.image"  style="width:100%" alt="User Image">
+                                <img :src="item.image" style="width:100%" alt="User Image">
                                 <!-- @if($user->profile->image)
                                     <img src="#" width="100%" />
                                     @else
@@ -21,7 +21,7 @@
                                 <router-link :to="{name: 'EditProfile'}" href="#" class="btn btn-info pull-right my-5">
                                     Update Profile</router-link>
                             </div>
-                            <div class="col-md-4 my-lg-5" >
+                            <div class="col-md-4 my-lg-5">
                                 <h1><b>Name :</b> {{getUserInfo.name}} </h1>
                                 <h4><b>Email :</b> {{getUserInfo.email}}</h4>
                                 <h4><b>Phone : </b> {{getUserInfo.phone}}</h4>
@@ -123,7 +123,7 @@
     import axios from 'axios'
     import NavBar from '../../components/NavBar.vue'
     import SideBar from '../../components/SideBar.vue'
-    
+
     export default {
         name: 'Profile',
         data() {
@@ -137,7 +137,7 @@
                     .GET_AUTH_INFO.id);
                 this.profile = result.data;
             }
-            
+
         },
         components: {
             SideBar,
@@ -148,7 +148,7 @@
                 return this.$store.getters.GET_AUTH_INFO;
             }
         },
-        created(){
+        created() {
             this.loadData();
         },
     }

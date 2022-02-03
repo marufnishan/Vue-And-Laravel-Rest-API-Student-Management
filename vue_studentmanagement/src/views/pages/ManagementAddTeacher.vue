@@ -42,7 +42,7 @@
                                     <span class="text-danger" v-if="errors.id">{{errors.subject[0]}}</span>
                                     <p><b>Designation : </b><input type="text" class="form-control"
                                             v-model="form.designation"></p>
-                                            <span class="text-danger" v-if="errors.id">{{errors.designation[0]}}</span>
+                                    <span class="text-danger" v-if="errors.id">{{errors.designation[0]}}</span>
                                     <p><b>Salary : </b><input type="text" class="form-control" v-model="form.salary">
                                     </p>
                                     <span class="text-danger" v-if="errors.id">{{errors.salary[0]}}</span>
@@ -54,7 +54,7 @@
                                         v-if="errors.date_of_birth">{{errors.date_of_birth[0]}}</span>
                                     <p><b>Gender : </b><input type="text" class="form-control" v-model="form.gender">
                                     </p>
-                                     <span class="text-danger" v-if="errors.gender">{{errors.gender[0]}}</span>
+                                    <span class="text-danger" v-if="errors.gender">{{errors.gender[0]}}</span>
                                     <p><b>Marital Status : </b><input type="text" class="form-control"
                                             v-model="form.maritial_status"></p>
                                     <!-- <span class="text-danger"
@@ -202,51 +202,17 @@
         methods: {
 
             async addTeacher() {
-                await axios.post("/management/add/teacher", {
-                        name: this.form.name,
-                        email: this.form.email,
-                        phone: this.form.phone,
-
-                        id: this.form.id,
-                        user_id: this.form.user_id,
-                        subject: this.form.subject,
-                        designation: this.form.designation,
-                        salary: this.form.salary,
-                        /* image:null, */
-                        date_of_birth: this.form.date_of_birth,
-                        gender: this.form.gender,
-                        maritial_status: this.form.maritial_status,
-                        blood_group: this.form.blood_group,
-                        religion: this.form.religion,
-                        nationality: this.form.nationality,
-                        national_id: this.form.national_id,
-                        alternate_email: this.form.alternate_email,
-                        alternate_phone: this.form.alternate_phone,
-                        personal_website: this.form.personal_website,
-                        social_id: this.form.social_id,
-                        address: this.form.address,
-                        post_office: this.form.post_office,
-                        police_station: this.form.police_station,
-                        dictrict: this.form.dictrict,
-                        division: this.form.division,
-                        country: this.form.country,
-                        zip_code: this.form.zip_code,
-                        degree: this.form.degree,
-                        degree_name: this.form.degree_name,
-                        university: this.form.university,
-                        board: this.form.board,
-                        passing_year: this.form.passing_year,
-                        class_devision: this.form.class_devision,
-                        cgpa: this.form.cgpa,
-                        remarks: this.form.remarks,
-                    })
+                await axios.post("/management/add/teacher", this.form)
                     .then(response => {
                         alert(response.data.message);
+                        this.$router.push({
+                            name: 'ManagementShowAllTeachers'
+                        })
                     }).catch(error => {
                         this.errors = error.response.data.errors;
                         console.log(error.response.data.errors)
                     });
-                
+
             }
         }
     }
