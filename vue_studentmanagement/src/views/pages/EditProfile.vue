@@ -15,7 +15,7 @@
                                     <input type="file" name="image" class="form-control" accept="image/*"
                                         @change="GetImage">
                                     <span class="text-danger" v-if="errors.image">{{errors.image[0]}}</span>
-                                    <div class="input-group mb-3">
+                                    <div class="input-group my-3">
                                         <img :src="form.image" style="height:100px;width:100px;" alt="Image">
                                     </div>
                                 </div>
@@ -230,9 +230,7 @@
                 reader.readAsDataURL(image);
                 reader.onload = e => {
                     console.log(e)
-                    this.avater = e.currentTarget.result
-                    console.log(this.avater)
-                    this.form.image = this.avater
+                    this.form.image = e.currentTarget.result
                 }
             },
             editProfile() {

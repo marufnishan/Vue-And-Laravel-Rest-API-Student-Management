@@ -134,8 +134,8 @@
                                                 <td>{{item.remarks}}</td>
                                                 <td>
                                                     <div class="d-flex">
-                                                        <a href="#"><i class="btn btn-success fas fa-edit mr-3"></i></a>
-                                                        <i class="btn btn-danger fas fa-trash-alt"></i>
+                                                        <router-link :to="'/management/edit/student/'+item.id" href="#"><i class="btn btn-success fas fa-edit mr-3"></i></router-link>
+                                                        <i class="btn btn-danger fas fa-trash-alt" v-on:click="deleteStudent(item.id)"></i>
                                                     </div>
                                                     
                                                 </td>
@@ -171,7 +171,13 @@
             async loadData() {
                 let result = await axios.get("/management/show/students");
                 this.students = result.data;
-            }
+            },
+            async deleteStudent(id) {
+                console.warn(id)
+                await axios.delete("/management/delete_student_info/"+id);
+                alert("Student Successfully Deleted");
+                this.loadData();
+            },
             
         },
         created() {

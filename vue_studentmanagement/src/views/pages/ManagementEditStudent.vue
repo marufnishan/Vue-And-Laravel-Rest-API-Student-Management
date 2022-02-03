@@ -7,31 +7,21 @@
                 <div class="row">
                     <div class="panel panel-default">
                         <div class="panel-heading py-3">
-                            <h1>Edit Teacher</h1>
+                            <h1>Edit Student</h1>
                         </div>
                         <div class="panel-body">
-                            <form @submit.prevent="editTeacher">
+                            <form @submit.prevent="editStudent">
                                 <div class="col-md-4">
                                     <!-- <input type="file" name="image" class="form-control" accept="image/*" @change="GetImage" >
                             <span class="text-danger" v-if="errors.image">{{errors.image[0]}}</span> -->
-                                    <!-- <div class="input-group mb-3">
-                            <img :src="avater" style="height:100px;width:100px;" alt="Image">
-                            </div> -->
+                                    <div class="input-group mb-3">
+                                        <img :src="form.image" style="height:100px;width:100px;" alt="Image">
+                                    </div>
                                 </div>
                                 <div class="col-md-8">
-                                    <h3>Name : <input type="text" class="form-control" v-model="form.name"></h3>
-                                    <p><b>Email : </b><input type="email" class="form-control" v-model="form.email"></p>
-                                    <p><b>Phone : </b><input type="text" class="form-control" v-model="form.phone"></p>
                                     <p><b>Id : </b><input type="text" class="form-control" v-model="form.id"></p>
                                     <!-- <span class="text-danger" v-if="errors.id">{{errors.id[0]}}</span> -->
                                     <p><b>User Id : </b><input type="text" class="form-control" v-model="form.user_id">
-                                    </p>
-                                    <!-- <span class="text-danger" v-if="errors.id">{{errors.user_id[0]}}</span> -->
-                                    <p><b>Subject : </b><input type="text" class="form-control" v-model="form.subject">
-                                    </p>
-                                    <p><b>Designation : </b><input type="text" class="form-control"
-                                            v-model="form.designation"></p>
-                                    <p><b>Salary : </b><input type="text" class="form-control" v-model="form.salary">
                                     </p>
                                     <h1>Personal Information</h1>
                                     <p><b>Date Of Birth : </b><input type="date" class="form-control"
@@ -56,6 +46,44 @@
                                             v-model="form.personal_website"></p>
                                     <p><b>Social Network Id : </b><input type="text" class="form-control"
                                             v-model="form.social_id"></p>
+                                    <h1>Guardian Information</h1>
+                                    <p><b>Father's Name : </b><input type="text" class="form-control"
+                                            v-model="form.father_name"></p>
+                                    <p><b>Father's Contact No : </b><input type="text" class="form-control"
+                                            v-model="form.father_phn"></p>
+                                    <p><b>Father's Occupation : </b><input type="text" class="form-control"
+                                            v-model="form.father_occupation"></p>
+                                    <p><b>Father's Annual Income : </b><input type="text" class="form-control"
+                                            v-model="form.father_income"></p>
+                                    <p><b>Mother's Name : </b><input type="text" class="form-control"
+                                            v-model="form.mother_name"></p>
+                                    <p><b>Mother's Contact No : </b><input type="text" class="form-control"
+                                            v-model="form.mother_phn"></p>
+                                    <p><b>Mother's Occupation : </b><input type="text" class="form-control"
+                                            v-model="form.mother_occupation"></p>
+                                    <p><b>Mother's Annual Income : </b><input type="text" class="form-control"
+                                            v-model="form.mother_income"></p>
+                                    <p><b>Local Guardian's Name : </b><input type="text" class="form-control"
+                                            v-model="form.local_gurdian_name"></p>
+                                    <p><b>Local Guardian's Contact No : </b><input type="text" class="form-control"
+                                            v-model="form.local_gurdian_phn"></p>
+                                    <p><b>Local Guardian's Address : </b><input type="text" class="form-control"
+                                            v-model="form.local_gurdian_address"></p>
+                                    <h1>Permanent Address</h1>
+                                    <p><b>Address : </b><input type="text" class="form-control"
+                                            v-model="form.per_address"></p>
+                                    <p><b>Post Office : </b><input type="text" class="form-control"
+                                            v-model="form.per_post_office"></p>
+                                    <p><b>Police Station : </b><input type="text" class="form-control"
+                                            v-model="form.per_police_station"></p>
+                                    <p><b>District/City : </b><input type="text" class="form-control"
+                                            v-model="form.per_dictrict"></p>
+                                    <p><b>Division/State : </b><input type="text" class="form-control"
+                                            v-model="form.per_division"></p>
+                                    <p><b>Country : </b><input type="text" class="form-control"
+                                            v-model="form.per_country"></p>
+                                    <p><b>Zip Code : </b><input type="text" class="form-control"
+                                            v-model="form.per_zip_code"></p>
                                     <h1>Present Address</h1>
                                     <p><b>Address : </b><input type="text" class="form-control" v-model="form.address">
                                     </p>
@@ -102,7 +130,7 @@
     import NavBar from '../../components/NavBar.vue'
     import SideBar from '../../components/SideBar.vue'
     export default {
-        name: 'ManagementEditTeacher',
+        name: 'ManagementEditStudent',
         data() {
             return {
                 form: {
@@ -149,15 +177,15 @@
             NavBar
         },
         methods: {
-            async editTeacher() {
-                await axios.put("/management/edit/teacher", this.form);
+            async editStudent() {
+                await axios.put("/management/edit/student", this.form);
                 alert("User Information Updated");
                 this.$router.push({
-                    name: 'ManagementShowAllTeachers'
+                    name: 'ManagementShowAllStudents'
                 })
             },
             async loadData() {
-                let result = await axios.get("/management/teacher_info/" + this.$route.params.id);
+                let result = await axios.get("/management/student_info/" + this.$route.params.id);
                 this.form = result.data;
             },
         },

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\Auth\AuthController;
 use App\Http\Controllers\Api\Auth\ForgotPasswordController;
 use App\Http\Controllers\Api\Auth\ResetPasswordController;
+use App\Http\Controllers\Api\Management\ManagementStudentController;
 use App\Http\Controllers\Api\Management\ManagementTeacherController;
 use App\Http\Controllers\Api\Management\ManagementUsersController;
 use App\Http\Controllers\Api\Student\EditProfileController;
@@ -41,6 +42,7 @@ Route::prefix('v1')->group(function(){
 
     
     
+    
 
     Route::middleware('auth:api','verified')->group(function(){
         Route::post('/logout',[AuthController::class,'logout']);
@@ -55,6 +57,7 @@ Route::prefix('v1')->group(function(){
         });
         Route::get('/management/teacher_info/{id}',[ManagementTeacherController::class,'getTeacher']);
         Route::put('/management/edit/teacher',[ManagementTeacherController::class,'editteacher']);
+        Route::delete('/management/delete_teacher_info/{id}',[ManagementTeacherController::class,'delete']);
 
         //User
         Route::put('/management/update_utype',[ManagementUsersController::class,'updateUtype']);
@@ -66,6 +69,9 @@ Route::prefix('v1')->group(function(){
             });
 
         //Student
+        Route::get('/management/student_info/{id}',[ManagementStudentController::class,'getStudent']);
+        Route::put('/management/edit/student',[ManagementStudentController::class,'editStudent']);
+        Route::delete('/management/delete_student_info/{id}',[ManagementStudentController::class,'delete']);
         Route::get('/management/show/students', function () {
             return Student::all();
             });

@@ -19,6 +19,7 @@ import ManagementAddTeacher from '../views/pages/ManagementAddTeacher.vue'
 import ManagementShowAllTeachers from '../views/pages/ManagementShowAllTeachers.vue'
 import ManagementEditTeacher from '../views/pages/ManagementEditTeacher.vue'
 import ManagementShowAllStudents from '../views/pages/ManagementShowAllStudents.vue'
+import ManagementEditStudent from '../views/pages/ManagementEditStudent.vue'
 import About from '../views/pages/About.vue'
 
 const routes = [{
@@ -147,6 +148,14 @@ const routes = [{
     path: '/management/show/students',
     name: 'ManagementShowAllStudents',
     component: ManagementShowAllStudents,
+    meta: {
+      auth: true
+    }
+  },
+  {
+    path: '/management/edit/student/:id',
+    name: 'ManagementEditStudent',
+    component: ManagementEditStudent,
     meta: {
       auth: true
     }

@@ -162,4 +162,9 @@ class ManagementTeacherController extends Controller
         $user = Teacher::find($id);
         return response()->json($user);
     }
+    public function delete($id)
+    {
+        Teacher::destroy($id);
+        return response()->json(['message'=>'Teacher Info Deleted Successfully'],200);
+    }
 }
