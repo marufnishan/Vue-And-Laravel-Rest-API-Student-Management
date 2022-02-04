@@ -1,4 +1,5 @@
 <template>
+<div>
     <nav-bar></nav-bar>
     <side-bar></side-bar>
     <div class="content-wrapper">
@@ -123,9 +124,11 @@
             </div>
         </div>
     </div>
+</div>
 </template>
 
 <script>
+import Swal from 'sweetalert2'
     import axios from 'axios'
     import NavBar from '../../components/NavBar.vue'
     import SideBar from '../../components/SideBar.vue'
@@ -179,7 +182,13 @@
         methods: {
             async editStudent() {
                 await axios.put("/management/edit/student", this.form);
-                alert("User Information Updated");
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Student Information Updated Successfully!!',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
                 this.$router.push({
                     name: 'ManagementShowAllStudents'
                 })

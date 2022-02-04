@@ -1,4 +1,5 @@
 <template>
+    <div>
     <nav-bar></nav-bar>
     <side-bar></side-bar>
     <div class="content-wrapper">
@@ -150,9 +151,11 @@
             </div>
         </div>
     </div>
+    </div>
 </template>
 
 <script>
+    import Swal from 'sweetalert2'
     import axios from 'axios'
     import NavBar from '../../components/NavBar.vue'
     import SideBar from '../../components/SideBar.vue'
@@ -173,9 +176,24 @@
                 this.students = result.data;
             },
             async deleteStudent(id) {
-                console.warn(id)
-                await axios.delete("/management/delete_student_info/"+id);
-                alert("Student Successfully Deleted");
+                await Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        axios.delete("/management/delete_student_info/"+id);
+                        Swal.fire(
+                            'Deleted!',
+                            'Student has been deleted.',
+                            'success'
+                        )
+                    }
+                })
                 this.loadData();
             },
             

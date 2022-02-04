@@ -1,12 +1,13 @@
 <template>
-      <!-- Navbar -->
-        <nav-bar></nav-bar>
-      <!-- /.navbar -->
+  <div>
+    <!-- Navbar -->
+    <nav-bar></nav-bar>
+    <!-- /.navbar -->
 
-      <!-- Main Sidebar Container -->
-        <side-bar></side-bar>
+    <!-- Main Sidebar Container -->
+    <side-bar></side-bar>
     <div>
-        <div class="content-wrapper">
+      <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <div class="content-header">
           <div class="container-fluid">
@@ -16,7 +17,9 @@
               </div><!-- /.col -->
               <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                  <li class="breadcrumb-item"><router-link :to="{name: 'Home'}" href="#">Home</router-link></li>
+                  <li class="breadcrumb-item">
+                    <router-link :to="{name: 'Home'}" href="#">Home</router-link>
+                  </li>
                   <li class="breadcrumb-item active">Dashboard v1</li>
                 </ol>
               </div><!-- /.col -->
@@ -612,12 +615,16 @@
         <!-- /.content -->
       </div>
     </div>
+  </div>
 </template>
 <script>
-import NavBar from '../../components/NavBar.vue';
-import SideBar from '../../components/SideBar.vue';
-export default{
-  components: {NavBar,SideBar},
-    name:'Dashboard',
-}
+  import NavBar from '../../components/NavBar.vue';
+  import SideBar from '../../components/SideBar.vue';
+  export default {
+    components: {
+      NavBar,
+      SideBar
+    },
+    name: 'Dashboard',
+  }
 </script>
