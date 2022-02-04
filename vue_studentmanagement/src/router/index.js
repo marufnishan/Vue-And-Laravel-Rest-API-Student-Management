@@ -9,7 +9,6 @@ import Forgot from '../views/auth/password/Forgot.vue'
 import Reset from '../views/auth/password/Reset.vue'
 import Home from '../views/pages/Home.vue'
 import Dashboard from '../views/pages/Dashboard.vue'
-import Management from '../views/pages/Management.vue'
 import Profile from '../views/pages/Profile.vue'
 import EditProfile from '../views/pages/EditProfile.vue'
 import Teacher from '../views/pages/Teacher.vue'
@@ -66,14 +65,6 @@ const routes = [{
     path: '/',
     name: 'Home',
     component: Home,
-    meta: {
-      auth: true
-    }
-  },
-  {
-    path: '/dashboard/management',
-    name: 'Management',
-    component: Management,
     meta: {
       auth: true
     }

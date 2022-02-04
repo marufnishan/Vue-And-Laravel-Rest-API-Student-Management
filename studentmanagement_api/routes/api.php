@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\Auth\AuthController;
 use App\Http\Controllers\Api\Auth\ForgotPasswordController;
 use App\Http\Controllers\Api\Auth\ResetPasswordController;
+use App\Http\Controllers\Api\Management\HomeController;
 use App\Http\Controllers\Api\Management\ManagementStudentController;
 use App\Http\Controllers\Api\Management\ManagementTeacherController;
 use App\Http\Controllers\Api\Management\ManagementUsersController;
@@ -42,7 +43,6 @@ Route::prefix('v1')->group(function(){
 
     
     
-    
 
     Route::middleware('auth:api','verified')->group(function(){
         Route::post('/logout',[AuthController::class,'logout']);
@@ -75,6 +75,15 @@ Route::prefix('v1')->group(function(){
         Route::get('/management/show/students', function () {
             return Student::all();
             });
+
+        //Settings
+        Route::post('/management/settings',[HomeController::class,'AddSettings']);
+        Route::get('/management/settings_info',[HomeController::class,'getSettings']);
+
+        //Home Slider
+        Route::post('/management/add_homeslider',[HomeController::class,'AddHomeSlider']);
+        Route::put('/management/edit_homeslider',[HomeController::class,'EditHomeSlider']);
+        Route::delete('/management/delete_home_slider/{id}',[HomeController::class,'deleteHomeSlider']);
     });
 
     //FOR TEACHER
