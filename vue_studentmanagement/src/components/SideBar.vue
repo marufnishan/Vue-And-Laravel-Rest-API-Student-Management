@@ -77,6 +77,12 @@
                     <p>User</p>
                   </router-link>
                 </li>
+                <li class="nav-item">
+                  <router-link :to="{name: 'ManagementAddHomeSlider'}" href="#" class="nav-link">
+                    <i class="nav-icon fas fa-cogs text-light"></i>
+                    <p>Add Home Slider</p>
+                  </router-link>
+                </li>
               </ul>
             </li>
             <li v-if="getUserInfo.utype=== 'tea'" class="nav-item menu-open">
