@@ -20,6 +20,7 @@ import ManagementEditTeacher from '../views/pages/ManagementEditTeacher.vue'
 import ManagementShowAllStudents from '../views/pages/ManagementShowAllStudents.vue'
 import ManagementEditStudent from '../views/pages/ManagementEditStudent.vue'
 import ManagementAddHomeSlider from '../views/Management/ManagementAddHomeSlider.vue'
+import ManagementShowAllHomeSliders from '../views/Management/ManagementShowAllHomeSliders.vue'
 import About from '../views/pages/About.vue'
 
 const routes = [{
@@ -156,6 +157,14 @@ const routes = [{
     path: '/management/add/homeslider',
     name: 'ManagementAddHomeSlider',
     component: ManagementAddHomeSlider,
+    meta: {
+      auth: true
+    }
+  },
+  {
+    path: '/management/show/homesliders',
+    name: 'ManagementShowAllHomeSliders',
+    component: ManagementShowAllHomeSliders,
     meta: {
       auth: true
     }

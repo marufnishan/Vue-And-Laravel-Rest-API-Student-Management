@@ -78,9 +78,9 @@
                   </router-link>
                 </li>
                 <li class="nav-item">
-                  <router-link :to="{name: 'ManagementAddHomeSlider'}" href="#" class="nav-link">
+                  <router-link :to="{name: 'ManagementShowAllHomeSliders'}" href="#" class="nav-link">
                     <i class="nav-icon fas fa-cogs text-light"></i>
-                    <p>Add Home Slider</p>
+                    <p>Home Slider</p>
                   </router-link>
                 </li>
               </ul>

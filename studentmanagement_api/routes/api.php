@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\Management\ManagementTeacherController;
 use App\Http\Controllers\Api\Management\ManagementUsersController;
 use App\Http\Controllers\Api\Student\EditProfileController;
 use App\Http\Controllers\Api\Student\StudentController;
+use App\Models\HomeSlider;
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\User;
@@ -82,6 +83,9 @@ Route::prefix('v1')->group(function(){
 
         //Home Slider
         Route::post('/management/add_homeslider',[HomeController::class,'AddHomeSlider']);
+        Route::get('/management/show/homeslider', function () {
+            return HomeSlider::all();
+            });
         Route::put('/management/edit_homeslider',[HomeController::class,'EditHomeSlider']);
         Route::delete('/management/delete_home_slider/{id}',[HomeController::class,'deleteHomeSlider']);
     });
