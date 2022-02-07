@@ -7,6 +7,7 @@ use App\Models\HomeSlider;
 use App\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Image;
 
 class HomeController extends Controller
 {
@@ -88,9 +89,10 @@ class HomeController extends Controller
                 'errors'=>$validate->errors()
             ],422);
         }
-        
             $slider = new HomeSlider();
-            $slider->image = $request->image;
+            $name = time().'.' . explode('/', explode(':', substr($request->image, 0, strpos($request->image, ';')))[1])[1];
+            Image::make($request->image)->save(public_path('img/HomeSlider/').$name);
+            $slider->image = $name;
             $slider->status = $request->status;
             $slider->save();
             return response()->json(['message'=>'HomeSlider Added Successfully'],200);

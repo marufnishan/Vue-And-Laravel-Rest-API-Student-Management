@@ -37,6 +37,7 @@
 
 </template>
 <script>
+    import Swal from 'sweetalert2'
     import axios from 'axios';
     import NavBar from '../../components/NavBar.vue'
     import SideBar from '../../components/SideBar.vue'
@@ -66,14 +67,16 @@
                     this.form.image = e.currentTarget.result
                 }
                 
-                let form = new FormData();
-                form.append('image',this.form.image);
-                this.file = form
-                console.warn(this.file)
             },
             async AddSlider() {
                 await axios.post("/management/add_homeslider", this.form).then(response => {
-                    console.log(response.data.message)
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: response.data.message,
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
                     })
                     .catch(error => {
                         this.errors = error.response.data.errors;
