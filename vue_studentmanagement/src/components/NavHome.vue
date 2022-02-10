@@ -2,7 +2,7 @@
     <div>
         <!-- Nav Section Start -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top ">
-        <div class="container-fluid pl-lg-5 pr-lg-5">
+        <div class="container-fluid">
             <router-link :to="{name: 'Home'}" class="navbar-brand" href="#">Home</router-link>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
