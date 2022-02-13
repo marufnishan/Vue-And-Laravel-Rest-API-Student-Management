@@ -8,19 +8,21 @@
                     <div class="row">
                         <div class="panel panel-default">
                             <div class="panel-heading py-3">
-                                <h1>Add Home Slider</h1>
+                                <h1>Edit Home Slider</h1>
                             </div>
                             <div class="panel-body">
-                                <form @submit.prevent="AddSlider">
+                                <form @submit.prevent="EditSlider">
                                     <div class="col-md-4">
                                         <input type="file" name="image" class="form-control" accept="image/*"
                                             @change="GetImage">
-                                        <span class="text-danger" v-if="errors.image">{{errors.image[0]}}</span>
+                                        <!-- <span class="text-danger" v-if="errors.image">{{errors.image[0]}}</span> -->
                                         <div class="input-group my-3">
-                                            <img :src="form.image" style="height:200px;width:400px;" alt="Image">
+                                            <img :src="'http://localhost:8000/img/HomeSlider/'+form.image" style="height:200px;width:400px;" alt="Image">
                                         </div>
                                     </div>
                                     <div class="col-md-8">
+                                        <input type="hidden" class="form-control"
+                                                v-model="form.id">
                                         <p><b>Status : </b><input type="text" class="form-control"
                                                 v-model="form.status"></p>
                                         
@@ -46,14 +48,15 @@
             SideBar,
             NavBar
         },
-        name: 'ManagementAddHomeSlider',
+        name: 'ManagementEditHomeSlider',
         data() {
             return {
                 form: {
-                    image: '',
-                    status: '',
-                },
-                errors: {},
+                    id: this.$route.params.id,
+                    image: null,
+                    status: null,
+                },/* 
+                errors: {}, */
             }
         },
         methods: {
@@ -62,30 +65,33 @@
                 let reader = new FileReader();
                 reader.readAsDataURL(image);
                 reader.onload = e => {
-                    console.log(e)
                     this.form.image = e.currentTarget.result
+                    console.log(this.form.image)
                 }
                 
             },
-            async AddSlider() {
-                await axios.post("/management/add_homeslider", this.form).then(response => {
-                        Swal.fire({
-                            position: 'top-end',
-                            icon: 'success',
-                            title: response.data.message,
-                            showConfirmButton: false,
-                            timer: 1500
-                        })
-                        this.$router.push({
-                            name: 'ManagementShowAllHomeSliders'
-                        })
-                    })
-                    .catch(error => {
-                        this.errors = error.response.data.errors;
-                        console.log(error.response.data.errors)
-                    });
+            async EditSlider() {
+                await axios.put("/management/edit_homeslider", this.form);
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Slider Updated Successfully!!',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+                this.$router.push({
+                    name: 'ManagementShowAllHomeSliders'
+                })
 
-            }
+            },
+            async loadData() {
+                let result = await axios.get("/management/slider_info/" + this.$route.params.id);
+                this.form.image = result.data.image;
+                this.form.status = result.data.status;
+            },
+        },
+        created() {
+            this.loadData();
         },
     }
 </script>

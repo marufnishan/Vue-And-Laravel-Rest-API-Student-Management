@@ -42,10 +42,11 @@
                                                     <td>{{item.status}}</td>
                                                     <td>
                                                         <div class="d-flex">
-                                                            <a href="#">
-                                                                <i class="btn btn-success fas fa-edit mr-3"></i>
-                                                            </a>
-                                                            <i class="btn btn-danger fas fa-trash-alt"></i>
+                                                            <router-link :to="'/management/edit/homeslider/'+item.id"
+                                                                href="#"><i
+                                                                    class="btn btn-success fas fa-edit mr-3"></i>
+                                                            </router-link>
+                                                            <i class="btn btn-danger fas fa-trash-alt" v-on:click="deleteSlider(item.id)"></i>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -63,6 +64,7 @@
 </template>
 
 <script>
+    import Swal from 'sweetalert2'
     import axios from 'axios'
     import NavBar from '../../components/NavBar.vue'
     import SideBar from '../../components/SideBar.vue'
@@ -82,6 +84,27 @@
                 let result = await axios.get("/management/show/homeslider");
                 this.HomeSliders = result.data;
                 console.log(this.HomeSliders)
+            },
+            async deleteSlider(id) {
+                await Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        axios.delete("/management/delete_home_slider/"+id);
+                        Swal.fire(
+                            'Deleted!',
+                            'Slider has been deleted.',
+                            'success'
+                        )
+                    }
+                })
+                this.loadData();
             },
         },
         created() {

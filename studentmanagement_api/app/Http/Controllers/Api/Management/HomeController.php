@@ -98,6 +98,12 @@ class HomeController extends Controller
             return response()->json(['message'=>'HomeSlider Added Successfully'],200);
     }
 
+    public function getSlider($id)
+    {
+        $user = HomeSlider::find($id);
+        return response()->json($user);
+    }
+
     public function EditHomeSlider(Request $request){
         $validate = Validator::make($request->all(),[
             'id'=> 'required',
@@ -112,15 +118,27 @@ class HomeController extends Controller
         }
         
             $slider = HomeSlider::find($request->id);
-            $slider->image = $request->image;
-            $slider->status = $request->status;
+            if($request->image)
+        {
+            unlink(public_path('img/HomeSlider/').$slider->image);
+            $name = time().'.' . explode('/', explode(':', substr($request->image, 0, strpos($request->image, ';')))[1])[1];
+            Image::make($request->image)->save(public_path('img/HomeSlider/').$name);
+            $slider->image = $name;
+        }
+           $slider->status = $request->status;
             $slider->save();
             return response()->json(['message'=>'HomeSlider Updated Successfully'],200);
     }
 
     public function deleteHomeSlider($id)
     {
-        HomeSlider::destroy($id);
+        $slider = HomeSlider::find($id);
+        if($slider->image)
+        {
+            unlink(public_path('img/HomeSlider/').$slider->image);
+        }
+        
+        $slider->delete();
         return response()->json(['message'=>'HomeSlider Deleted Successfully'],200);
     }
 }

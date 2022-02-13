@@ -1,11 +1,11 @@
 <template>
-  <div>
+  <div class="overflow">
     <!-- Nav Section Start -->
     <nav-home></nav-home>
     <!-- Nav Section End -->
     <!-- Main Section Start -->
     <div
-      class="container-fluid d-flex justify-content-center mt-5 pt-3 bg-light"
+      class="container-fluid d-flex justify-content-center mt-5 bg-light"
       id="cname"
     >
       <h1>Welcome To ABCD College</h1>
@@ -37,7 +37,7 @@
     </div>
     <!-- Carasol Start -->
     <div class="container-fluid">
-        <Carousel>
+        <Carousel :autoplay="3000" :wrap-around="true">
       <Slide v-for="slide in HomeSliders" :key="slide">
         <div class="carousel__item">
             <img :src="'http://localhost:8000/img/HomeSlider/'+slide.image" class="w-100"/>
@@ -59,6 +59,7 @@
   </div>
 </template>
 <script>
+import 'vue3-carousel/dist/carousel.css';
 import { Carousel, Navigation, Pagination, Slide } from "vue3-carousel";
 
 import "vue3-carousel/dist/carousel.css";
@@ -96,11 +97,14 @@ export default {
 </script>
 <style scoped>
 
-    
+    .container-fluid{
+      margin: 0 !important;
+      padding: 0 !important;
+    }
 
     #cname {
         margin-top: 50px !important;
-        padding: 10px !important;
+        padding-top: 20px !important;
     }
 
 
@@ -111,13 +115,8 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0;
-  padding: 0;
 }
 
-.carousel__slide {
-  padding: 10px;
-}
 
 .carousel__prev,
 .carousel__next {
@@ -126,5 +125,8 @@ export default {
 }
 li.carousel__slide.carousel__slide--active.carousel__slide--visible {
     padding: 0;
+}
+.overflow{
+  overflow-x: hidden;
 }
 </style>
