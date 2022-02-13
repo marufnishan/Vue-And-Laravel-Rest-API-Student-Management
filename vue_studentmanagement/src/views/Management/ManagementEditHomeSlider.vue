@@ -11,24 +11,22 @@
                                 <h1>Edit Home Slider</h1>
                             </div>
                             <div class="panel-body">
-                                <form @submit.prevent="EditSlider">
-                                    <div class="col-md-4">
-                                        <input type="file" name="image" class="form-control" accept="image/*"
-                                            @change="GetImage">
-                                        <!-- <span class="text-danger" v-if="errors.image">{{errors.image[0]}}</span> -->
-                                        <div class="input-group my-3">
-                                            <img :src="'http://localhost:8000/img/HomeSlider/'+form.image" style="height:200px;width:400px;" alt="Image">
+                                <div class="table-responsive">
+                                    <form @submit.prevent="EditSlider">
+                                        <div class="col-md-4">
+                                            <input type="file" name="image" class="form-control" accept="image/*"
+                                                @change="GetImage">
+                                            <!-- <span class="text-danger" v-if="errors.image">{{errors.image[0]}}</span> -->
+                                            <div class="input-group my-3">
+                                                <img :src="getSlider()" style="height:200px;width:400px;" alt="Image">
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <input type="hidden" class="form-control"
-                                                v-model="form.id">
-                                        <p><b>Status : </b><input type="text" class="form-control"
-                                                v-model="form.status"></p>
-                                        
-                                        <button type="submit" class="btn btn-info pull-right">Update</button>
-                                    </div>
-                                </form>
+                                        <div class="col-md-8">
+                                            <input type="hidden" class="form-control" v-model="form.id">
+                                            <button type="submit" class="btn btn-info pull-right">Update</button>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -54,12 +52,17 @@
                 form: {
                     id: this.$route.params.id,
                     image: null,
-                    status: null,
-                },/* 
-                errors: {}, */
+                },
+                /* 
+                                errors: {}, */
             }
         },
         methods: {
+            getSlider() {
+                let slider = (this.form.image.length > 200) ? this.form.image :
+                    'http://localhost:8000/img/HomeSlider/' + this.form.image;
+                return slider;
+            },
             GetImage(e) {
                 let image = e.target.files[0]
                 let reader = new FileReader();
@@ -68,7 +71,7 @@
                     this.form.image = e.currentTarget.result
                     console.log(this.form.image)
                 }
-                
+
             },
             async EditSlider() {
                 await axios.put("/management/edit_homeslider", this.form);
@@ -87,7 +90,6 @@
             async loadData() {
                 let result = await axios.get("/management/slider_info/" + this.$route.params.id);
                 this.form.image = result.data.image;
-                this.form.status = result.data.status;
             },
         },
         created() {

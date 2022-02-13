@@ -11,22 +11,21 @@
                                 <h1>Add Home Slider</h1>
                             </div>
                             <div class="panel-body">
-                                <form @submit.prevent="AddSlider">
-                                    <div class="col-md-4">
-                                        <input type="file" name="image" class="form-control" accept="image/*"
-                                            @change="GetImage">
-                                        <span class="text-danger" v-if="errors.image">{{errors.image[0]}}</span>
-                                        <div class="input-group my-3">
-                                            <img :src="form.image" style="height:200px;width:400px;" alt="Image">
+                                <div class="table-responsive">
+                                    <form @submit.prevent="AddSlider">
+                                        <div class="col-md-4">
+                                            <input type="file" name="image" class="form-control" accept="image/*"
+                                                @change="GetImage">
+                                            <span class="text-danger" v-if="errors.image">{{errors.image[0]}}</span>
+                                            <div class="input-group my-3">
+                                                <img :src="form.image" style="height:200px;width:400px;" alt="Image">
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <p><b>Status : </b><input type="text" class="form-control"
-                                                v-model="form.status"></p>
-                                        
-                                        <button type="submit" class="btn btn-info pull-right">Update</button>
-                                    </div>
-                                </form>
+                                        <div class="col-md-8">
+                                            <button type="submit" class="btn btn-info pull-right">Update</button>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -51,7 +50,6 @@
             return {
                 form: {
                     image: '',
-                    status: '',
                 },
                 errors: {},
             }
@@ -65,7 +63,7 @@
                     console.log(e)
                     this.form.image = e.currentTarget.result
                 }
-                
+
             },
             async AddSlider() {
                 await axios.post("/management/add_homeslider", this.form).then(response => {

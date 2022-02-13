@@ -81,7 +81,6 @@ class HomeController extends Controller
     public function AddHomeSlider(Request $request){
         $validate = Validator::make($request->all(),[
             'image'=> 'required',
-            'status'=> 'required',
         ]);
 
         if($validate->fails()){
@@ -93,7 +92,6 @@ class HomeController extends Controller
             $name = time().'.' . explode('/', explode(':', substr($request->image, 0, strpos($request->image, ';')))[1])[1];
             Image::make($request->image)->save(public_path('img/HomeSlider/').$name);
             $slider->image = $name;
-            $slider->status = $request->status;
             $slider->save();
             return response()->json(['message'=>'HomeSlider Added Successfully'],200);
     }
@@ -108,7 +106,6 @@ class HomeController extends Controller
         $validate = Validator::make($request->all(),[
             'id'=> 'required',
             'image'=> 'required',
-            'status'=> 'required',
         ]);
 
         if($validate->fails()){
@@ -125,7 +122,6 @@ class HomeController extends Controller
             Image::make($request->image)->save(public_path('img/HomeSlider/').$name);
             $slider->image = $name;
         }
-           $slider->status = $request->status;
             $slider->save();
             return response()->json(['message'=>'HomeSlider Updated Successfully'],200);
     }

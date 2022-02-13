@@ -84,7 +84,7 @@ export default {
   },
   methods: {
     async loadData() {
-      let result = await axios.get("/management/show/homeslider");
+      let result = await axios.get("/homeslider");
       this.HomeSliders = result.data;
       console.log(this.HomeSliders);
     },

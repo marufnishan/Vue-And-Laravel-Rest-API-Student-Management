@@ -47,6 +47,10 @@ Route::prefix('v1')->group(function(){
 
     Route::middleware('auth:api','verified')->group(function(){
         Route::post('/logout',[AuthController::class,'logout']);
+        
+        Route::get('/homeslider', function () {
+            return HomeSlider::all();
+            });
     });
 
     //FOR MANAGEMENT
@@ -83,9 +87,6 @@ Route::prefix('v1')->group(function(){
 
         //Home Slider
         Route::post('/management/add_homeslider',[HomeController::class,'AddHomeSlider']);
-        Route::get('/management/show/homeslider', function () {
-            return HomeSlider::all();
-            });
         Route::get('/management/slider_info/{id}',[HomeController::class,'getSlider']);
         Route::put('/management/edit_homeslider',[HomeController::class,'EditHomeSlider']);
         Route::delete('/management/delete_home_slider/{id}',[HomeController::class,'deleteHomeSlider']);

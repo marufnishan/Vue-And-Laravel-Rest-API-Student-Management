@@ -14,7 +14,6 @@
                                         <div class="col-md-8">
                                             All HomeSliders
                                         </div>
-
                                         <div class="col-md-2">
                                             <router-link :to="{name: 'ManagementAddHomeSlider'}" href="#"
                                                 class="btn btn-success float-right">Add New</router-link>
@@ -31,22 +30,22 @@
                                                 <tr>
                                                     <th>Id</th>
                                                     <th>Image</th>
-                                                    <th>Status</th>
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr v-for="item in HomeSliders" :key="item.id">
                                                     <td>{{item.id}}</td>
-                                                    <td><img :src="'http://localhost:8000/img/HomeSlider/'+item.image" width="100" /></td>
-                                                    <td>{{item.status}}</td>
+                                                    <td><img :src="'http://localhost:8000/img/HomeSlider/'+item.image"
+                                                            width="400" /></td>
                                                     <td>
                                                         <div class="d-flex">
                                                             <router-link :to="'/management/edit/homeslider/'+item.id"
                                                                 href="#"><i
                                                                     class="btn btn-success fas fa-edit mr-3"></i>
                                                             </router-link>
-                                                            <i class="btn btn-danger fas fa-trash-alt" v-on:click="deleteSlider(item.id)"></i>
+                                                            <i class="btn btn-danger fas fa-trash-alt"
+                                                                v-on:click="deleteSlider(item.id)"></i>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -81,7 +80,7 @@
         },
         methods: {
             async loadData() {
-                let result = await axios.get("/management/show/homeslider");
+                let result = await axios.get("/homeslider");
                 this.HomeSliders = result.data;
                 console.log(this.HomeSliders)
             },
@@ -96,7 +95,7 @@
                     confirmButtonText: 'Yes, delete it!'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        axios.delete("/management/delete_home_slider/"+id);
+                        axios.delete("/management/delete_home_slider/" + id);
                         Swal.fire(
                             'Deleted!',
                             'Slider has been deleted.',
