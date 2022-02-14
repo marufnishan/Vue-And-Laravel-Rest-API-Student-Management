@@ -3,8 +3,7 @@
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
       <!-- Brand Logo -->
       <router-link :to="{name: 'Home'}" href="index3.html" class="brand-link">
-        <img src="/admin/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
-          style="opacity: .8">
+        <i class="fa fa-graduation-cap mr-3 ml-3"></i>
         <span class="brand-text font-weight-light">NISHAN</span>
       </router-link>
 
@@ -61,13 +60,13 @@
               <ul class="nav nav-treeview">
                 <li class="nav-item">
                   <router-link :to="{name: 'ManagementShowAllStudents'}" href="#" class="nav-link">
-                    <i class="nav-icon far fa-user text-light"></i>
+                    <i class="nav-icon fa fa-user-graduate text-light"></i>
                     <p>Student</p>
                   </router-link>
                 </li>
                 <li class="nav-item">
                   <router-link :to="{name: 'ManagementShowAllTeachers'}" href="#" class="nav-link">
-                    <i class="nav-icon far fa-user text-light"></i>
+                    <i class="nav-icon fa fa-user-tie text-light"></i>
                     <p>Teacher</p>
                   </router-link>
                 </li>
@@ -79,8 +78,14 @@
                 </li>
                 <li class="nav-item">
                   <router-link :to="{name: 'ManagementShowAllHomeSliders'}" href="#" class="nav-link">
-                    <i class="nav-icon fas fa-cogs text-light"></i>
+                    <i class="nav-icon fa fa-images"></i>
                     <p>Home Slider</p>
+                  </router-link>
+                </li>
+                <li class="nav-item">
+                  <router-link :to="{name: 'Settings '}" href="#" class="nav-link">
+                    <i class="nav-icon fas fa-cogs text-light"></i>
+                    <p>Settings </p>
                   </router-link>
                 </li>
               </ul>
