@@ -23,6 +23,8 @@ import ManagementAddHomeSlider from '../views/Management/ManagementAddHomeSlider
 import ManagementShowAllHomeSliders from '../views/Management/ManagementShowAllHomeSliders.vue'
 import ManagementEditHomeSlider from '../views/Management/ManagementEditHomeSlider.vue'
 import Settings  from '../views/Management/Settings .vue'
+import AddSettings  from '../views/Management/AddSettings.vue'
+import EditSettings  from '../views/Management/EditSettings.vue'
 import About from '../views/pages/About.vue'
 
 const routes = [{
@@ -183,6 +185,22 @@ const routes = [{
     path: '/management/settings',
     name: 'Settings ',
     component: Settings ,
+    meta: {
+      auth: true
+    }
+  },
+  {
+    path: '/management/add/settings',
+    name: 'AddSettings',
+    component: AddSettings,
+    meta: {
+      auth: true
+    }
+  },
+  {
+    path: '/management/edit/settings',
+    name: 'EditSettings',
+    component: EditSettings,
     meta: {
       auth: true
     }

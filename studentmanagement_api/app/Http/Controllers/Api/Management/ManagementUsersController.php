@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Image;
 
 class ManagementUsersController extends Controller
 {
@@ -33,7 +34,7 @@ class ManagementUsersController extends Controller
         $validate = Validator::make($request->all(),[
             'id' => 'required',
             'name' => 'required',
-            /* 'image' => 'required', */
+            'image' => 'required',
         ]);
         
         if($validate->fails()){
@@ -44,7 +45,9 @@ class ManagementUsersController extends Controller
 
         $user = User::find($request->id);
         $user->name =$request->name;
-        /* $user->image =$request->image; */
+        $name = time().'.' . explode('/', explode(':', substr($request->image, 0, strpos($request->image, ';')))[1])[1];
+        Image::make($request->image)->save(public_path('img/Profile/').$name);
+        $user->image = $name;
         $user->save();
         return response()->json(['message'=>'User Info Updated Successfully'],200);
     }

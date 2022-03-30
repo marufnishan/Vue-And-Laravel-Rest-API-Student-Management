@@ -83,6 +83,7 @@ Route::prefix('v1')->group(function(){
 
         //Settings
         Route::post('/management/settings',[HomeController::class,'AddSettings']);
+        Route::put('/management/edit/settings',[HomeController::class,'EditSettings']);
         Route::get('/management/settings_info',[HomeController::class,'getSettings']);
 
         //Home Slider

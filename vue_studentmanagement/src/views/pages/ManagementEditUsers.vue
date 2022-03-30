@@ -13,10 +13,10 @@
                             <div class="panel-body">
                                 <form @submit.prevent="editUser">
                                     <div class="col-md-4">
-                                        <!-- <input type="file" name="image" class="form-control" accept="image/*" @change="GetImage" >
-                                    <span class="text-danger" v-if="errors.image">{{errors.image[0]}}</span> -->
+                                        <input type="file" name="image" class="form-control" accept="image/*" @change="GetImage" >
+                                    <!-- <span class="text-danger" v-if="errors.image">{{errors.image[0]}}</span> -->
                                         <div class="input-group mb-3">
-                                            <img :src="profile.image" style="height:100px;width:100px;" alt="Image">
+                                            <img :src="'http://localhost:8000/img/Profile/'+profile.image" style="height:200px;width:200px;" alt="Image">
                                         </div>
                                     </div>
                                     <div class="col-md-8">
@@ -70,6 +70,16 @@
                 this.$router.push({
                     name: 'Users'
                 })
+            },
+            GetImage(e) {
+                let image = e.target.files[0]
+                let reader = new FileReader();
+                reader.readAsDataURL(image);
+                reader.onload = e => {
+                    this.profile.image = e.currentTarget.result
+                    console.log(this.profile.image)
+                }
+
             },
             async loadData() {
                 let result = await axios.get("/management/user_info/" + this.$route.params.id);
