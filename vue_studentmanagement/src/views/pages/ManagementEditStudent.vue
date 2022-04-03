@@ -13,11 +13,11 @@
                         <div class="panel-body">
                             <form @submit.prevent="editStudent">
                                 <div class="col-md-4">
-                                    <!-- <input type="file" name="image" class="form-control" accept="image/*" @change="GetImage" >
-                            <span class="text-danger" v-if="errors.image">{{errors.image[0]}}</span> -->
-                                    <div class="input-group mb-3">
-                                        <img :src="form.image" style="height:100px;width:100px;" alt="Image">
-                                    </div>
+                                    <input type="file" name="image" class="form-control" accept="image/*" @change="GetImage" >
+                                        <!-- <span class="text-danger" v-if="errors.image">{{errors.image[0]}}</span> -->
+                                        <div class="input-group mb-3">
+                                        <img :src="'http://localhost:8000/img/Profile/'+form.image" style="height:100px;width:100px;" alt="Image">
+                                        </div>
                                 </div>
                                 <div class="col-md-8">
                                     <p><b>Id : </b><input type="text" class="form-control" v-model="form.id"></p>
@@ -145,7 +145,7 @@ import Swal from 'sweetalert2'
                     subject: '',
                     designation: '',
                     salary: '',
-                    /* image:'', */
+                    image:'',
                     date_of_birth: '',
                     gender: '',
                     maritial_status: '',
@@ -180,6 +180,16 @@ import Swal from 'sweetalert2'
             NavBar
         },
         methods: {
+                 GetImage(e) {
+                let image = e.target.files[0]
+                let reader = new FileReader();
+                reader.readAsDataURL(image);
+                reader.onload = e => {
+                    this.form.image = e.currentTarget.result
+                    console.log(this.form.image)
+                }
+
+            },
             async editStudent() {
                 await axios.put("/management/edit/student", this.form);
                 Swal.fire({

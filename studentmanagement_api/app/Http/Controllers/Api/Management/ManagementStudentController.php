@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Image;
 
 class ManagementStudentController extends Controller
 {
@@ -27,7 +28,18 @@ class ManagementStudentController extends Controller
         }
 
         $student = Student::find($request->id);
-        $student->image = $request->image;
+        $str = $request->image;
+        $pattern = "/base64/i";
+        $val = preg_match($pattern, $str);
+        if ($val) {
+            //unlink(public_path('img/Profile/') .$student->image);
+            $name = time().'.' . explode('/', explode(':', substr($request->image, 0, strpos($request->image, ';')))[1])[1];
+            Image::make($request->image)->save(public_path('img/Profile/').$name);
+            $student->image = $name;
+        }else{
+            
+            $student->image = $request->image;
+        }
         $student->date_of_birth = $request->date_of_birth;
         $student->gender = $request->gender;
         $student->maritial_status = $request->maritial_status;

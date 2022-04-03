@@ -6,10 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\HomeSlider;
 use App\Models\Setting;
 use Illuminate\Http\Request;
-//use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
 use Image;
-use Illuminate\Support\Str;
 
 class HomeController extends Controller
 {
@@ -105,8 +103,12 @@ class HomeController extends Controller
         } else {
 
             $settings = Setting::find($request->id);
-            $ln = Str::length($request->logo);
-            if ($ln > 100) {
+            $str = $request->logo;
+            $pattern = "/base64/i";
+            $val = preg_match($pattern, $str);
+
+            
+            if ($val) {
                 unlink(public_path('img/logo/').$settings->logo);
                 $name = time() . '.' . explode('/', explode(':', substr($request->logo, 0, strpos($request->logo, ';')))[1])[1];
                 Image::make($request->logo)->save(public_path('img/logo/') . $name);
@@ -115,8 +117,6 @@ class HomeController extends Controller
                 
                 $settings->logo = $request->logo;
             }
-            
-            
             $settings->name = $request->name;
             $settings->email = $request->email;
             $settings->phone = $request->phone;
@@ -179,12 +179,19 @@ class HomeController extends Controller
         }
 
         $slider = HomeSlider::find($request->id);
-        if ($request->image) {
-            unlink(public_path('img/HomeSlider/') . $slider->image);
-            $name = time() . '.' . explode('/', explode(':', substr($request->image, 0, strpos($request->image, ';')))[1])[1];
-            Image::make($request->image)->save(public_path('img/HomeSlider/') . $name);
-            $slider->image = $name;
-        }
+
+        $str = $request->image;
+            $pattern = "/base64/i";
+            $val = preg_match($pattern, $str);
+            if ($val) {
+                unlink(public_path('img/HomeSlider/') . $slider->image);
+                $name = time() . '.' . explode('/', explode(':', substr($request->image, 0, strpos($request->image, ';')))[1])[1];
+                Image::make($request->image)->save(public_path('img/HomeSlider/') . $name);
+                $slider->image = $name;
+            }else{
+                
+                $slider->image = $request->logo;
+            }
         $slider->save();
         return response()->json(['message' => 'HomeSlider Updated Successfully'], 200);
     }

@@ -45,9 +45,19 @@ class ManagementUsersController extends Controller
 
         $user = User::find($request->id);
         $user->name =$request->name;
-        $name = time().'.' . explode('/', explode(':', substr($request->image, 0, strpos($request->image, ';')))[1])[1];
-        Image::make($request->image)->save(public_path('img/Profile/').$name);
-        $user->image = $name;
+
+        $str = $request->image;
+        $pattern = "/base64/i";
+        $val = preg_match($pattern, $str);
+        if ($val) {
+            unlink(public_path('img/Profile/') .$user->image);
+            $name = time().'.' . explode('/', explode(':', substr($request->image, 0, strpos($request->image, ';')))[1])[1];
+            Image::make($request->image)->save(public_path('img/Profile/').$name);
+            $user->image = $name;
+        }else{
+            
+            $user->image = $request->image;
+        }
         $user->save();
         return response()->json(['message'=>'User Info Updated Successfully'],200);
     }

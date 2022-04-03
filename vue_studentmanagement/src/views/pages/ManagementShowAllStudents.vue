@@ -85,7 +85,7 @@
                                             <tr v-for="item in students" :key="item.id">
                                                 <td>{{item.id}}</td>
                                                 <td>{{item.user_id }}</td>
-                                                <td><img :src="item.image" width="60" /></td>
+                                                <td><img :src="'http://localhost:8000/img/Profile/'+item.image" width="60" /></td>
                                                 <td>{{item.date_of_birth}}</td>
                                                 <td>{{item.gender}}</td>
                                                 <td>{{item.maritial_status}}</td>

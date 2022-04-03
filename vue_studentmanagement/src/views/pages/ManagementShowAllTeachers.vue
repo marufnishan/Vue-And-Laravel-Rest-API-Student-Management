@@ -69,7 +69,7 @@
                                             <tbody>
                                                 <tr v-for="item in teachers" :key="item.id">
                                                     <td>{{item.id}}</td>
-                                                    <td><img :src="item.image" width="60" /></td>
+                                                    <td><img :src="'http://localhost:8000/img/Profile/'+item.image" width="60" /></td>
                                                     <td>{{item.name}}</td>
                                                     <td>{{item.email}}</td>
                                                     <td>{{item.phone}}</td>

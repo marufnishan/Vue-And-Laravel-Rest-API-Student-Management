@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Image;
 
 class ManagementTeacherController extends Controller
 {
@@ -125,7 +126,19 @@ class ManagementTeacherController extends Controller
         $teacher->subject = $request->subject;
         $teacher->designation = $request->designation;
         $teacher->salary = $request->salary;
-        $teacher->image = $request->image;
+
+        $str = $request->image;
+        $pattern = "/base64/i";
+        $val = preg_match($pattern, $str);
+        if ($val) {
+            unlink(public_path('img/Profile/') .$teacher->image);
+            $name = time().'.' . explode('/', explode(':', substr($request->image, 0, strpos($request->image, ';')))[1])[1];
+            Image::make($request->image)->save(public_path('img/Profile/').$name);
+            $teacher->image = $name;
+        }else{
+            
+            $teacher->image = $request->image;
+        }
         $teacher->date_of_birth = $request->date_of_birth;
         $teacher->gender = $request->gender;
         $teacher->maritial_status = $request->maritial_status;
