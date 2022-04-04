@@ -59,32 +59,32 @@
               </router-link>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <router-link :to="{name: 'ManagementShowAllStudents'}" href="#" class="nav-link">
-                    <i class="nav-icon fa fa-user-graduate text-light"></i>
+                  <router-link active-class="active" exact :to="{name: 'ManagementShowAllStudents'}" href="#" class="nav-link">
+                    <i class="nav-icon fa fa-user-graduate "></i>
                     <p>Student</p>
                   </router-link>
                 </li>
                 <li class="nav-item">
-                  <router-link :to="{name: 'ManagementShowAllTeachers'}" href="#" class="nav-link">
-                    <i class="nav-icon fa fa-user-tie text-light"></i>
+                  <router-link active-class="active" exact :to="{name: 'ManagementShowAllTeachers'}" href="#" class="nav-link">
+                    <i class="nav-icon fa fa-user-tie "></i>
                     <p>Teacher</p>
                   </router-link>
                 </li>
                 <li class="nav-item">
-                  <router-link :to="{name: 'Users'}" href="#" class="nav-link">
-                    <i class="nav-icon far fa-user text-light"></i>
+                  <router-link active-class="active" exact :to="{name: 'Users'}" href="#" class="nav-link">
+                    <i class="nav-icon far fa-user "></i>
                     <p>User</p>
                   </router-link>
                 </li>
                 <li class="nav-item">
-                  <router-link :to="{name: 'ManagementShowAllHomeSliders'}" href="#" class="nav-link">
+                  <router-link active-class="active" exact :to="{name: 'ManagementShowAllHomeSliders'}" href="#" class="nav-link">
                     <i class="nav-icon fa fa-images"></i>
                     <p>Home Slider</p>
                   </router-link>
                 </li>
                 <li class="nav-item">
-                  <router-link :to="{name: 'Settings '}" href="#" class="nav-link">
-                    <i class="nav-icon fas fa-cogs text-light"></i>
+                  <router-link active-class="active" exact :to="{name: 'Settings '}" href="#" class="nav-link">
+                    <i class="nav-icon fas fa-cogs "></i>
                     <p>Settings </p>
                   </router-link>
                 </li>
