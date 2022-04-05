@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\Management\HomeController;
 use App\Http\Controllers\Api\Management\ManagementStudentController;
 use App\Http\Controllers\Api\Management\ManagementTeacherController;
 use App\Http\Controllers\Api\Management\ManagementUsersController;
+use App\Http\Controllers\Api\Setup\StudentClassController;
 use App\Http\Controllers\Api\Student\EditProfileController;
 use App\Http\Controllers\Api\Student\StudentController;
 use App\Models\HomeSlider;
@@ -53,6 +54,7 @@ Route::prefix('v1')->group(function(){
             });
     });
 
+    
     //FOR MANAGEMENT
     Route::middleware('auth:api','verified','authmanagement')->group(function(){
         //Teacher
@@ -91,6 +93,12 @@ Route::prefix('v1')->group(function(){
         Route::get('/management/slider_info/{id}',[HomeController::class,'getSlider']);
         Route::put('/management/edit_homeslider',[HomeController::class,'EditHomeSlider']);
         Route::delete('/management/delete_home_slider/{id}',[HomeController::class,'deleteHomeSlider']);
+
+        //Classes
+        Route::post('/management/add_class',[StudentClassController::class,'addclass']);
+        Route::put('/management/edit_class',[StudentClassController::class,'editclass']);
+        Route::delete('/management/delete_class/{id}',[StudentClassController::class,'delete']);
+
     });
 
     //FOR TEACHER
